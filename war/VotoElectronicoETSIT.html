@@ -100,20 +100,20 @@
 						<form role="form">
 							<div class="form-group">
 								<div class="input-group">
-									<input type="text" class="form-control" placeholder="DNI" id="usuario">
+									<input type="text" class="form-control" placeholder="DNI" id="usuario" required>
 									<label for="usuario" class="input-group-addon glyphicon glyphicon-user"></label>
 								</div>
 							</div> 
 							<div class="form-group">
 								<div class="input-group">
-									<input type="password" class="form-control" id="contraseña" placeholder="Contraseña">
+									<input type="password" class="form-control" id="contraseña" placeholder="Contraseña" required>
 									<label for="contraseña" class="input-group-addon glyphicon glyphicon-lock"></label>
 								</div> 
 							</div> 
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button class="form-control btn btn-primary">Aceptar</button>
+						<button class="form-control btn btn-primary">Entrar</button>
 					</div> 
 				</div>
 			</div>
@@ -125,8 +125,75 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 						<h4 class="modal-title" id="etiqueta">Registro</h4>
 					</div>
+					<div class="modal-body">
+						<form role="form">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="form-group">
+									<div class="input-group">
+										<label for="name"  class="input-group-addon" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nombre &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<input type="text" class="form-control" id="name" required>  
+									</div>
+								</div>
+							</div>
+							<br><br><br><br>
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="input-group">
+											<label for="apellido1" class="input-group-addon">&nbsp; Primer Apellido &nbsp;</label>
+											<input type="text" class="form-control" id="apellido1" required> 
+										</div>
+									</div>
+							</div>
+							<br><br><br><br>
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="input-group">
+											<label for="apellido2" class="input-group-addon">Segundo Apellido</label>
+											<input type="text" class="form-control" id="apellido2" required>  
+										</div>
+									</div>
+							</div>
+							<br><br><br><br>
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="input-group">
+											<label for="dni" class="input-group-addon">DNI</label>
+											<input type="text" class="form-control" id="dni" required>
+										</div>
+										<span class="help-block">DNI con Letra</span>
+									</div>
+							</div>
+							<br><br><br><br><br>
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="input-group">
+											<label for="mail" class="input-group-addon">E-Mail</label>
+											<input type="text" class="form-control" id="mail" required>  
+										</div>
+									</div>
+							</div>
+							<br><br><br><br>
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+									<div class="form-group">
+										<div class="input-group">
+											<label for="contraseña" class="input-group-addon">Contraseña</label>
+											<input type="password" class="form-control" id="contraseña" required>  
+										</div>
+									</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+									<div class="form-group">
+										<div class="input-group">
+											<label for="contraseña" class="input-group-addon">Repetir contraseña</label>
+											<input type="password" class="form-control" id="contraseña" required>  
+										</div>
+									</div>
+							</div>
+							<br><br>		
+						</form>
+					</div>
 					<div class="modal-footer">
-						<button class="form-control btn btn-primary">Aceptar</button>
+						<button class="form-control btn btn-success">Registrarse</button>
 					</div> 
 				</div>
 			</div>
