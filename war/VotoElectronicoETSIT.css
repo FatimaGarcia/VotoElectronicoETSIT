@@ -30,5 +30,21 @@ html{
 }
 h1{
 	font-family:'Raleway', sans-serif;
-    font-size: 55px;
+    font-size: 45px;
+}
+#login{
+	font-family:'Raleway', sans-serif; 
+	font-size:25px; 
+	padding:10px; 
+	padding-right:30px; 
+	padding-left: 30px;
+	margin-left:50px;
+}
+#registro{
+	font-family:'Raleway', sans-serif; 
+	font-size:25px; 
+	padding:10px; 
+	padding-right:30px; 
+	padding-left: 30px;
+	margin-right:50px;
 }
