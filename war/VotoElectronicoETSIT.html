@@ -1,23 +1,27 @@
-<!doctype html>
-<!-- The DOCTYPE declaration above will set the     -->
-<!-- browser's rendering engine into                -->
-<!-- "Standards Mode". Replacing this declaration   -->
-<!-- with a "Quirks Mode" doctype is not supported. -->
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-
-    <!--                                                               -->
-    <!-- Consider inlining CSS to reduce the number of requested files -->
-    <!--                                                               -->
-    <link type="text/css" rel="stylesheet" href="VotoElectronicoETSIT.css">
-
-    <!--                                           -->
-    <!-- Any title is fine                         -->
-    <!--                                           -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CEE</title>
-    
+ 
+    <!— CSS de Bootstrap —>
+    <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+ 	<!-CSS ->
+    <link type="text/css" rel="stylesheet" href="VotoElectronicoETSIT.css">
+ 	
+ 	<!-Google Fonts ->
+ 	<link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+ 	<link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+ 	<link href='https://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+ 	
+ 	
+    <!— librerías opcionales que activan el soporte de HTML5 para IE8 —>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
     <!--                                           -->
     <!-- This script loads your compiled module.   -->
     <!-- If you add any GWT meta tags, they must   -->
@@ -25,12 +29,7 @@
     <!--                                           -->
     <script type="text/javascript" language="javascript" src="votoelectronicoetsit/votoelectronicoetsit.nocache.js"></script>
   </head>
-
-  <!--                                           -->
-  <!-- The body can have arbitrary html, or      -->
-  <!-- you can leave the body empty if you want  -->
-  <!-- to create a completely dynamic UI.        -->
-  <!--                                           -->
+  
   <body>
 
     <!-- OPTIONAL: include this if you want history support -->
@@ -43,20 +42,46 @@
         in order for this application to display correctly.
       </div>
     </noscript>
+    
+   <nav class="navbar navbar-fixed-top">
+  		<div class="container-fluid">
+    	<!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		        <img src="/Images/logo1.png" alt="logo" width="40px" height="35px" id="logo">
+		    </div>
 
-    <h1>Web Application Starter Project</h1>
-
-    <table align="center">
-      <tr>
-        <td colspan="2" style="font-weight:bold;">Please enter your name:</td>        
-      </tr>
-      <tr>
-        <td id="nameFieldContainer"></td>
-        <td id="sendButtonContainer"></td>
-      </tr>
-      <tr>
-        <td colspan="2" style="color:red;" id="errorLabelContainer"></td>
-      </tr>
-    </table>
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="#"><span class="glyphicon glyphicon-home"></span>	Inicio</a></li>
+		        <li><a href="#"><span class="glyphicon glyphicon-plus"></span>	Log-In</a></li>
+		        <li><a href="#"><span class="glyphicon glyphicon-user"></span>	Registro</a></li>
+		        <li><a href="#"><span class="glyphicon glyphicon-earphone"></span> Contacto</a></li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+    <div class="inicio" style="margin-top:70px; background-color:#F0FFFF;">
+			<div class="row text-center" style="margin-bottom:20px;">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<img src="/Images/voto.png" class="img-thumbnail">					
+				</div>
+			</div>
+			<div class="row text-center">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+					<h1> Colegio Electoral Electrónico </h1>
+				</div>
+			</div>
+	</div>
+	
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="Bootstrap/js/bootstrap.min.js"></script>
+    
   </body>
 </html>

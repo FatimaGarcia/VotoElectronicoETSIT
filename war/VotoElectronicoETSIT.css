@@ -1,34 +1,34 @@
-/** Add css rules here for your application. */
-
-
-/** Example rules used by the template application (remove for your app) */
-h1 {
-  font-size: 2em;
-  font-weight: bold;
-  color: #777777;
-  margin: 40px 0px 70px;
-  text-align: center;
+/*Barra de Navegacion*/
+.navbar.navbar-fixed-top{
+    border-bottom: 3px solid #746D6E;
+    background-color:white;
 }
 
-.sendButton {
-  display: block;
-  font-size: 16pt;
+.navbar.navbar-fixed-top{
+	font-family:'Raleway', sans-serif;
+    font-size: 15px;
+}
+.nav.navbar-nav.navbar-right li a{
+    color:#526666;
+    letter-spacing: 1px;
+    padding-left:20px;
+    padding-right:20px;
+}
+.nav.navbar-nav li a:hover{
+    background-color:#708090;
+    text-decoration: none;
+    color:#F4F3F3;
+}
+#logo{
+	margin-top:10px;
 }
 
-/** Most GWT widgets already have a style name defined */
-.gwt-DialogBox {
-  width: 400px;
+html{
+	background-color:#F0FFFF;
+	width:100%;
+	height:100%;
 }
-
-.dialogVPanel {
-  margin: 5px;
-}
-
-.serverResponseLabelError {
-  color: red;
-}
-
-/** Set ids using widget.getElement().setId("idOfElement") */
-#closeButton {
-  margin: 15px 6px 6px;
+h1{
+	font-family:'Raleway', sans-serif;
+    font-size: 55px;
 }
