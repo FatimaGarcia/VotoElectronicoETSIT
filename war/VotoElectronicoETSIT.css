@@ -32,19 +32,71 @@ h1{
 	font-family:'Raleway', sans-serif;
     font-size: 45px;
 }
+h3{
+	font-family:'Raleway', sans-serif;
+    font-size: 40px;
+}
 #login{
 	font-family:'Raleway', sans-serif; 
-	font-size:25px; 
-	padding:10px; 
+	font-size:20px; 
+	padding:5px; 
 	padding-right:30px; 
 	padding-left: 30px;
 	margin-left:50px;
 }
 #registro{
 	font-family:'Raleway', sans-serif; 
-	font-size:25px; 
-	padding:10px; 
+	font-size:20px; 
+	padding:5px; 
 	padding-right:30px; 
 	padding-left: 30px;
 	margin-right:50px;
+}
+#tabla1 tr:nth-child(odd){
+	border:none;
+	background-color:#D3D3D3;
+}
+#tabla1 tr:nth-child(even){
+	border: none;
+	background-color: #526666;
+	color:white;
+}
+#tabla2 tr:nth-child(odd){
+	border:none;
+	background-color:#D3D3D3;
+}
+#tabla2 tr:nth-child(even){
+	border: none;
+	background-color: #526666;
+	color:white;
+}
+#tabla1 td{
+		font-family:'Raleway', sans-serif; 
+	font-size:20px; 
+}
+#tabla2 td{
+		font-family:'Raleway', sans-serif; 
+	font-size:20px; 
+}
+#btn1{
+	font-family:'Raleway', sans-serif; 
+	font-size:20px; 
+	padding:5px; 
+	padding-right:30px; 
+	padding-left: 30px;
+}
+#btn2{
+	font-family:'Raleway', sans-serif; 
+	font-size:20px; 
+	padding:5px; 
+	padding-right:30px; 
+	padding-left: 30px;
+}
+
+#descarga{
+	font-family:'Raleway', sans-serif; 
+	font-size:30px; 
+	padding:5px; 
+	padding-right:30px; 
+	padding-left: 30px;
 }
