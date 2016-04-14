@@ -5,7 +5,7 @@
 }
 
 .navbar.navbar-fixed-top{
-	font-family:'Raleway', sans-serif;
+	font-family:'Roboto', sans-serif;
     font-size: 15px;
 }
 .nav.navbar-nav.navbar-right li a{
@@ -19,26 +19,34 @@
     text-decoration: none;
     color:#F4F3F3;
 }
-#logo{
-	margin-top:10px;
+#nav{
+	display:inline-block;
+	margin-top:15px;
+	margin-left:15px;
+	font-family:'Roboto', sans-serif;
+    font-size: 15px;
+	
 }
-
+#logo{
+	margin-top:0px;
+}
+/*Inicio*/
 html{
-	background-color:#F0FFFF;
+	background-image:url("./Images/fondo.jpg");
 	width:100%;
 	height:100%;
 }
 h1{
-	font-family:'Raleway', sans-serif;
+	font-family:'Roboto', sans-serif;
     font-size: 45px;
 }
 h3{
-	font-family:'Raleway', sans-serif;
+	font-family:'Roboto', sans-serif;
     font-size: 40px;
 }
 
 #login{
-	font-family:'Raleway', sans-serif; 
+	font-family:'Roboto', sans-serif; 
 	font-size:20px; 
 	padding:5px; 
 	padding-right:30px; 
@@ -46,13 +54,14 @@ h3{
 	margin-left:50px;
 }
 #registro{
-	font-family:'Raleway', sans-serif; 
+	font-family:'Roboto', sans-serif; 
 	font-size:20px; 
 	padding:5px; 
 	padding-right:30px; 
 	padding-left: 30px;
 	margin-right:50px;
 }
+/*Pagina de voto*/
 #tabla1 tr:nth-child(odd){
 	border:none;
 	background-color:#D3D3D3;
@@ -72,30 +81,30 @@ h3{
 	color:white;
 }
 #tabla1 td{
-		font-family:'Raleway', sans-serif; 
+		font-family:'Roboto', sans-serif; 
 	font-size:20px; 
 }
 #tabla2 td{
-		font-family:'Raleway', sans-serif; 
+		font-family:'Roboto', sans-serif; 
 	font-size:20px; 
 }
 #btn1{
-	font-family:'Raleway', sans-serif; 
+	font-family:'Roboto', sans-serif; 
 	font-size:20px; 
 	padding:5px; 
 	padding-right:30px; 
 	padding-left: 30px;
 }
 #btn2{
-	font-family:'Raleway', sans-serif; 
+	font-family:'Roboto', sans-serif; 
 	font-size:20px; 
 	padding:5px; 
 	padding-right:30px; 
 	padding-left: 30px;
 }
-
+/*Certificado de voto*/
 #descarga{
-	font-family:'Raleway', sans-serif; 
+	font-family:'Roboto', sans-serif; 
 	font-size:30px; 
 	padding:5px; 
 	padding-right:30px; 
