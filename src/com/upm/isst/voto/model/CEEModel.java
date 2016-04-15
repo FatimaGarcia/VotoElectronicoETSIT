@@ -21,17 +21,17 @@ public class CEEModel implements Serializable {
 	@Column
 	private String provincia;
 	@Column
-	private String contraseña;
+	private String contrasena;
 
 	public CEEModel(String nombre, String apellido1, String apellido2, long dni, 
-			 String provincia, String contraseña) {
+			 String provincia, String contrasena) {
 		// TODO Auto-generated constructor stub
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
 		this.dni = dni;
 		this.provincia = provincia;
-		this.contraseña = contraseña;
+		this.contrasena = contrasena;
 	}
 
 	public String getNombre() {
@@ -74,12 +74,12 @@ public class CEEModel implements Serializable {
 		this.provincia = provincia;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public static long getSerialversionuid() {

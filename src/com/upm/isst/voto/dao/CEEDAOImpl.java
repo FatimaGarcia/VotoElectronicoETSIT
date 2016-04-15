@@ -12,7 +12,7 @@ public class CEEDAOImpl implements CEEDAO {
 
 	@Override
 	public CensoModel create(String nombre, String apellido1, String apellido2,
-			long dni, String provincia, String contraseña) {
+			long dni, String provincia, String contrasena) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -54,7 +54,7 @@ public class CEEDAOImpl implements CEEDAO {
 	}
 
 	@Override
-	public List<CensoModel> readContraseña(String contraseña) {
+	public List<CensoModel> readContrasena(String contrasena) {
 		// TODO Auto-generated method stub
 		return null;
 	}
