@@ -1,6 +1,7 @@
 package com.upm.isst.voto.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,10 @@ import javax.persistence.Id;
 @Entity
 public class CensoModel implements Serializable {
 	private static final long serialVersionUID =01L;
+	
 	@Id
+	@Column
+	private long dni;
 	@Column
 	private String nombre;
 	@Column
@@ -17,45 +21,29 @@ public class CensoModel implements Serializable {
 	@Column
 	private String apellido2;
 	@Column
-	private long dni;
-	@Column
-	private String calle;
-	@Column
-	private long numero;
-	@Column
-	private String bloque;
-	@Column
-	private long piso;
-	@Column
-	private String puerta;
+	private long codigoPostal;
 	@Column
 	private String ciudad;
 	@Column
 	private String provincia;
 	@Column
-	private String nacimiento;
-	@Column
-	private String nacionalidad;
+	private Date nacimiento;
 	@Column
 	private String lugarNacimiento;
+	@Column
+	private String nacionalidad;
 	@Column
 	private String sexo;
 	@Column
 	private boolean votoElectronico;
 
-	public CensoModel(String nombre, String apellido1, String apellido2, long dni, String calle, long numero, String bloque,
-			long piso, String puerta, String ciudad, String provincia, String nacimiento, String nacionalidad, 
+	public CensoModel(long dni,String nombre, String apellido1, String apellido2, long codigoPostal, String ciudad, String provincia, Date nacimiento, String nacionalidad, 
 			String lugarNacimiento, String sexo, boolean votoElectronico) {
-		// TODO Auto-generated constructor stub
+		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
-		this.dni = dni;
-		this.calle = calle;
-		this.numero = numero;
-		this.bloque = bloque;
-		this.piso = piso;
-		this.puerta = puerta;
+		this.codigoPostal = codigoPostal;
 		this.ciudad = ciudad;
 		this.provincia = provincia;
 		this.nacimiento = nacimiento;
@@ -64,7 +52,13 @@ public class CensoModel implements Serializable {
 		this.sexo = sexo;
 		this.votoElectronico = votoElectronico;
 	}
+	public long getDni() {
+		return dni;
+	}
 
+	public void setDni(long dni) {
+		this.dni = dni;
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -89,54 +83,14 @@ public class CensoModel implements Serializable {
 		this.apellido2 = apellido2;
 	}
 
-	public long getDni() {
-		return dni;
+	public long getCodigoPostal() {
+		return codigoPostal;
 	}
 
-	public void setDni(long dni) {
-		this.dni = dni;
+	public void setCodigoPostal(long codigoPostal) {
+		this.codigoPostal = codigoPostal;
 	}
-
-	public String getCalle() {
-		return calle;
-	}
-
-	public void setCalle(String calle) {
-		this.calle = calle;
-	}
-
-	public long getNumero() {
-		return numero;
-	}
-
-	public void setNumero(long numero) {
-		this.numero = numero;
-	}
-
-	public String getBloque() {
-		return bloque;
-	}
-
-	public void setBloque(String bloque) {
-		this.bloque = bloque;
-	}
-
-	public long getPiso() {
-		return piso;
-	}
-
-	public void setPiso(long piso) {
-		this.piso = piso;
-	}
-
-	public String getPuerta() {
-		return puerta;
-	}
-
-	public void setPuerta(String puerta) {
-		this.puerta = puerta;
-	}
-
+	
 	public String getCiudad() {
 		return ciudad;
 	}
@@ -153,11 +107,11 @@ public class CensoModel implements Serializable {
 		this.provincia = provincia;
 	}
 
-	public String getNacimiento() {
+	public Date getNacimiento() {
 		return nacimiento;
 	}
 
-	public void setNacimiento(String nacimiento) {
+	public void setNacimiento(Date nacimiento) {
 		this.nacimiento = nacimiento;
 	}
 
@@ -192,9 +146,15 @@ public class CensoModel implements Serializable {
 	public void setVotoElectronico(boolean votoElectronico) {
 		this.votoElectronico = votoElectronico;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	
+	@Override
+	public String toString() {
+		return "Persona [DNI=" + dni + ", Nombre=" + nombre
+				+ ", PrimerApellido=" + apellido1 + ", SegundoApellido=" + apellido2
+				+ ", Codigo Postal=" + codigoPostal  + ", Ciudad=" + ciudad
+				+ ", Provincia=" + provincia + ", Fecha de nacimiento=" + nacimiento 
+				+ ", Nacionalidad=" + nacionalidad + ", Sexo=" + sexo + ", ¿Voto Electronico?=" + votoElectronico
+				+ "]";
 	}
 
 }
