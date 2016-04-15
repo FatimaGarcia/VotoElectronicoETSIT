@@ -1,7 +1,6 @@
 package com.upm.isst.voto.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +12,7 @@ public class CensoModel implements Serializable {
 	
 	@Id
 	@Column
-	private long dni;
+	private Long dni;
 	@Column
 	private String nombre;
 	@Column
@@ -27,9 +26,7 @@ public class CensoModel implements Serializable {
 	@Column
 	private String provincia;
 	@Column
-	private Date nacimiento;
-	@Column
-	private String lugarNacimiento;
+	private String nacimiento;
 	@Column
 	private String nacionalidad;
 	@Column
@@ -37,8 +34,8 @@ public class CensoModel implements Serializable {
 	@Column
 	private boolean votoElectronico;
 
-	public CensoModel(long dni,String nombre, String apellido1, String apellido2, long codigoPostal, String ciudad, String provincia, Date nacimiento, String nacionalidad, 
-			String lugarNacimiento, String sexo, boolean votoElectronico) {
+	public CensoModel(Long dni,String nombre, String apellido1, String apellido2, long codigoPostal, String ciudad, String provincia, String nacimiento, String nacionalidad, 
+					  String sexo, boolean votoElectronico) {
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
@@ -48,15 +45,14 @@ public class CensoModel implements Serializable {
 		this.provincia = provincia;
 		this.nacimiento = nacimiento;
 		this.nacionalidad = nacionalidad;
-		this.lugarNacimiento = lugarNacimiento;
 		this.sexo = sexo;
 		this.votoElectronico = votoElectronico;
 	}
-	public long getDni() {
+	public Long getDni() {
 		return dni;
 	}
 
-	public void setDni(long dni) {
+	public void setDni(Long dni) {
 		this.dni = dni;
 	}
 	public String getNombre() {
@@ -107,11 +103,11 @@ public class CensoModel implements Serializable {
 		this.provincia = provincia;
 	}
 
-	public Date getNacimiento() {
+	public String getNacimiento() {
 		return nacimiento;
 	}
 
-	public void setNacimiento(Date nacimiento) {
+	public void setNacimiento(String nacimiento) {
 		this.nacimiento = nacimiento;
 	}
 
@@ -121,14 +117,6 @@ public class CensoModel implements Serializable {
 
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
-	}
-
-	public String getLugarNacimiento() {
-		return lugarNacimiento;
-	}
-
-	public void setLugarNacimiento(String lugarNacimiento) {
-		this.lugarNacimiento = lugarNacimiento;
 	}
 
 	public String getSexo() {

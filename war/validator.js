@@ -37,7 +37,7 @@ $(document).ready(function() {
 				 validators: {
 					 notEmpty: {
 						 message: 'Campo obligatorio'
-					 },
+					 }
 				 }
 			 },
 			 apellido1: {

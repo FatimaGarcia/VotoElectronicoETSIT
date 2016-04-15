@@ -13,6 +13,12 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/votoelectronicoetsit</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>CensoServlet</servlet-name>
+		<servlet-class>com.upm.isst.voto.CensoServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet> 
+	
+	<servlet>
 		<servlet-name>ControlLogin</servlet-name>
 		<servlet-class>com.upm.isst.voto.ControlLoginServlet</servlet-class>
 	</servlet>

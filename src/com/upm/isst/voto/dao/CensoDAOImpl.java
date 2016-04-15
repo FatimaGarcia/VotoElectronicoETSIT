@@ -1,6 +1,5 @@
 package com.upm.isst.voto.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import com.upm.isst.voto.model.CensoModel;
@@ -21,14 +20,14 @@ private static CensoDAOImpl instance;
 		return instance;
 	}
 	@Override
-	public CensoModel create(long dni, String nombre, String apellido1, String apellido2,
-			  long codigoPostal, String ciudad, String provincia, Date nacimiento, String lugarNacimiento,
+	public CensoModel create(Long dni, String nombre, String apellido1, String apellido2,
+			  long codigoPostal, String ciudad, String provincia, String nacimiento,
 			String nacionalidad,  String sexo, boolean votoElectronico) {
 		
 		EntityManager em = EMFService.get().createEntityManager();
-		
+
 		CensoModel votante = new CensoModel(dni, nombre, apellido1, apellido2, codigoPostal, ciudad, provincia,
-											nacimiento, nacionalidad, lugarNacimiento, sexo, votoElectronico);
+											nacimiento, nacionalidad, sexo, votoElectronico);
 		em.persist(votante);
 		em.close();
 		return votante;
@@ -45,7 +44,7 @@ private static CensoDAOImpl instance;
 		return votantes;
 	}
 	@Override
-	public List<CensoModel> readDNI(long dni) {
+	public List<CensoModel> readDNI(Long dni) {
 		
 		EntityManager em = EMFService.get().createEntityManager();
 		
@@ -132,7 +131,7 @@ private static CensoDAOImpl instance;
 	}
 
 	@Override
-	public List<CensoModel> readNacimiento(Date nacimiento) {
+	public List<CensoModel> readNacimiento(String nacimiento) {
 		EntityManager em = EMFService.get().createEntityManager();
 		
 		Query q = em.createQuery("select t from CensoModel t where t.nacimiento = :nacimiento");
@@ -143,17 +142,6 @@ private static CensoDAOImpl instance;
 		return votantes;
 	}
 	
-	@Override
-	public List<CensoModel> readLugarNacimiento(String lugarNacimiento) {
-		EntityManager em = EMFService.get().createEntityManager();
-		
-		Query q = em.createQuery("select t from CensoModel t where t.lugarNacimiento = :lugarNacimiento");
-		q.setParameter("lugarNacimiento", lugarNacimiento);
-
-		List<CensoModel> votantes = q.getResultList();
-		em.close();
-		return votantes;
-	}
 	
 	@Override
 	public List<CensoModel> readNacionalidad(String nacionalidad) {
