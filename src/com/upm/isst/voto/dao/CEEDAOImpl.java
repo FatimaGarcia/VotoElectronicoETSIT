@@ -6,14 +6,26 @@ import com.upm.isst.voto.model.CensoModel;
 
 public class CEEDAOImpl implements CEEDAO {
 
+	private static CEEDAOImpl instance;
+	
 	public CEEDAOImpl() {
 		// TODO Auto-generated constructor stub
 	}
 
+	public static CEEDAOImpl getInstance(){
+		if (instance == null)
+			instance = new CEEDAOImpl();
+		return instance;
+	}
+	
 	@Override
 	public CensoModel create(String nombre, String apellido1, String apellido2,
 			long dni, String provincia, String contrasena) {
 		// TODO Auto-generated method stub
+		//EntityManager e m = EMFService.get().createEntityManager();
+		//Hacer lo que sea con la bbdd
+		//em.close();
+		
 		return null;
 	}
 

@@ -6,10 +6,17 @@ import com.upm.isst.voto.model.CensoModel;
 
 public class CensoDAOImpl implements CensoDAO {
 
+private static CensoDAOImpl instance;
+	
 	public CensoDAOImpl() {
 		// TODO Auto-generated constructor stub
 	}
 
+	public static CensoDAOImpl getInstance(){
+		if (instance == null)
+			instance = new CensoDAOImpl();
+		return instance;
+	}
 	@Override
 	public CensoModel create(String nombre, String apellido1, String apellido2,
 			long dni, String calle, long numero, String bloque, long piso,

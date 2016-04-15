@@ -6,8 +6,17 @@ import com.upm.isst.voto.model.CensoModel;
 
 public class PoliticosDAOImpl implements PoliticosDAO {
 
+
+private static PoliticosDAOImpl instance;
+	
 	public PoliticosDAOImpl() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public static PoliticosDAOImpl getInstance(){
+		if (instance == null)
+			instance = new PoliticosDAOImpl();
+		return instance;
 	}
 
 	@Override
