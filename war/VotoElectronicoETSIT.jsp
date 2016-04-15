@@ -21,18 +21,18 @@
 						<a href="VotoElectronicoETSIT.jsp"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></a>
 						<h4 class="modal-title" id="etiqueta">Log-In</h4>
 					</div>
-					<form action="/controlLogin" method="post" acceptcharset="utf-8">
+					<form action="/controlLogin" method="post" acceptcharset="utf-8" id="loginForm">
 						<div class="modal-body">
 							<div class="form-group">
 								<div class="input-group">
-									<input class="form-control" type="text" name="usuario" placeholder="DNI"/>
 									<label for="usuario" class="input-group-addon glyphicon glyphicon-user"></label>
+									<input class="form-control" type="text" name="usuario" placeholder="DNI"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<div class="input-group">
-									<input class="form-control" type="password" name="contrasena" placeholder="Contraseña"/>
+								<div class="input-group">									
 									<label for="contraseña" class="input-group-addon glyphicon glyphicon-lock"></label>
+									<input class="form-control" type="password" name="contrasena" placeholder="Contraseña"/>
 								</div> 
 							</div> 
 						</div>
@@ -46,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- Formulario de registro -->
+	<!-- Formulario de registro -->
 		<div class="modal fade" id="form2" tabindex="-5" role="dialog" aria-labelledby="etiqueta" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -54,50 +54,61 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 						<h4 class="modal-title" id="etiqueta">Registro</h4>
 					</div>
-					<form role="form" action="controlRegistro" method="post">
+					<form id="registrationForm" method="post" action="controlRegistro">
 						<div class="modal-body">
-							<div class="input-group registro">
-								<label for="nombre"  class="input-group-addon" style="padding-right:78px;" >  Nombre </label>
-								<input type="text" class="form-control" name="nombre">  
+							<div class="form-group">
+								<div class="input-group registro">
+									<label for="nombre"  class="input-group-addon" style="padding-right:78px;" >Nombre</label>
+									<input type="text" class="form-control" name="nombre" > 
+								</div>
 							</div>
-							<div class="input-group registro">
-								<label for="apellido1" class="input-group-addon" style="padding-right:33px;"> Primer Apellido</label>
-								<input type="text" class="form-control" name="apellido1" > 
+							<div class="form-group">
+								<div class="input-group registro">
+									<label for="apellido1" class="input-group-addon" style="padding-right:33px;">Primer Apellido</label>
+									<input type="text" class="form-control" name="apellido1"  >
+								</div>
 							</div>
-							<div class="input-group registro">
-								<label for="apellido2" class="input-group-addon" style="padding-right:21px;">Segundo Apellido</label>
-								<input type="text" class="form-control" name="apellido2">  
+							<div class="form-group">
+								<div class="input-group registro">
+									<label for="apellido2" class="input-group-addon" style="padding-right:21px;">Segundo Apellido</label>
+									<input type="text" class="form-control" name="apellido2" >  
+								</div>
 							</div>
-							<div class="input-group registro">
-								<label for="dni" class="input-group-addon" style="padding-right:103px;">DNI</label>
-								<input type="text" class="form-control" name="dni">
+							<div class="form-group" style="margin-bottom:0px;">
+								<div class="input-group registro">
+									<label for="dni" class="input-group-addon" style="padding-right:103px;">DNI</label>
+									<input type="text" class="form-control" name="dni">
+								</div>
 							</div>
-							<span class="help-block" style="font-size:15px;">DNI con Letra</span>
-							<div class="input-group registro">
-								<label for="mail" class="input-group-addon" style="padding-right:90px;">E-Mail</label>
-								<input type="email" class="form-control" name="mail">  
+							<span class="help-block" style="font-size:13px; margin-bottom:5px; margin-left:10px;">DNI sin Letra</span>
+							<div class="form-group">
+								<div class="input-group registro">
+									<label for="mail" class="input-group-addon" style="padding-right:90px;">E-Mail</label>
+									<input type="email" class="form-control" name="mail" >  
+							</div>	
 							</div>
-							<div class="input-group registro">
+							<div class="form-group">
+								<div class="input-group registro">
 									<label for="provincia" class="input-group-addon" style="padding-right:72px;">Provincia</label>
 									<input type="text" class="form-control" name="provincia" >  
+								</div>
 							</div>
-							<div class="input-group registro">
-								<label for="contrasenaR" class="input-group-addon" style="padding-right:57px;">Contraseña</label>
-								<input type="password" class="form-control" name="contrsenaR">  
+							<div class="form-group" style="margin-bottom:0px;">
+								<div class="input-group registro">
+									<label for="contrasenaR" class="input-group-addon" style="padding-right:57px;">Contraseña</label>
+									<input type="password" class="form-control" name="contrasenaR"> 
+								</div>
 							</div>
-							<div class="input-group registro">
-								<label for="contrasenaRR" class="input-group-addon" >Repetir contraseña</label>
-								<input type="password" class="form-control" name="contrasenaRR" > 
-							</div> 
+							<span class="help-block" style="font-size:13px; margin-left:10px;">6-10 caracteres</span>
 						</div>
 						<div class="modal-footer">
 							<input type="submit" class="form-control btn btn-success" value="Registrarse" />
 						</div>
-				</form>
-			</div>
-		</div>		
-	</div>
-    <script src="http://code.jquery.com/jquery.js"></script>
-    <script src="Bootstrap/js/bootstrap.min.js"></script>
+					</form>
+				</div>
+			</div>		
+		</div>
+	<script type="text/javascript" src="validator.js"> </script>
+
 </body>
 </html>
