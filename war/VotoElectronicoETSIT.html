@@ -9,7 +9,7 @@
     <!— CSS de Bootstrap —>
     <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
  	<!-CSS ->
-    <link type="text/css" rel="stylesheet" href="VotoElectronicoETSIT.css">
+    <link type="text/css" rel="stylesheet" href="css/VotoElectronicoETSIT.css">
  	
  	<!-Google Fonts ->
  	<link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
@@ -29,21 +29,7 @@
     <!--                                           -->
     <script type="text/javascript" language="javascript" src="votoelectronicoetsit/votoelectronicoetsit.nocache.js"></script>
   </head>
-  
-  <body>
-
-    <!-- OPTIONAL: include this if you want history support -->
-    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
-    
-    <!-- RECOMMENDED if your web app will not function without JavaScript enabled -->
-    <noscript>
-      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
-        Your web browser must have JavaScript enabled
-        in order for this application to display correctly.
-      </div>
-    </noscript>
-    
-   <nav class="navbar navbar-fixed-top">
+  <nav class="navbar navbar-fixed-top">
   		<div class="container-fluid">
     	<!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
@@ -60,7 +46,7 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="VotoElectronicoETSIT.html"><span class="glyphicon glyphicon-home"></span>	Inicio</a></li>
+		        <li><a href="VotoElectronicoETSIT.jsp"><span class="glyphicon glyphicon-home"></span>	Inicio</a></li>
 		        <li><a href="#"  data-toggle="modal" data-target="#form2"><span class="glyphicon glyphicon-plus"></span>	Registro</a></li>
 		        <li><a href="#" data-toggle="modal" data-target="#form1"><span class="glyphicon glyphicon-user"></span>	Log-In</a></li>
 		        <li><a href="#"><span class="glyphicon glyphicon-stats"></span>	CRV</a></li>
@@ -70,33 +56,145 @@
 	</nav>
     <div class="inicio">
 		<div class="modal fade" id="form1" tabindex="-5" role="dialog" aria-labelledby="etiqueta" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h4 class="modal-title" id="etiqueta">Log-In</h4>
-				</div>
-				<div class="modal-body">
-					<form>
-						<div class="form-group">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="DNI" id="usuario" required>
-								<label for="usuario" class="input-group-addon glyphicon glyphicon-user"></label>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title" id="etiqueta">Log-In</h4>
+					</div>
+					<form action="/controlLogin" method="post" acceptcharset="utf-8">
+						<div class="modal-body">
+							<div class="form-group">
+								<div class="input-group">
+									<input class="form-control" type="text" name="usuario" placeholder="DNI"/>
+									<label for="usuario" class="input-group-addon glyphicon glyphicon-user"></label>
+								</div>
 							</div>
-						</div> 
-						<div class="form-group">
-							<div class="input-group">
-								<input type="password" class="form-control" id="contraseña" placeholder="Contraseña" required>
-								<label for="contraseña" class="input-group-addon glyphicon glyphicon-lock"></label>
+							<div class="form-group">
+								<div class="input-group">
+									<input class="form-control" type="password" name="contraseña" placeholder="Contraseña"/>
+									<label for="contraseña" class="input-group-addon glyphicon glyphicon-lock"></label>
+								</div> 
 							</div> 
-						</div> 
+						</div>
+						<div class ="modal-footer"> 						
+							<input class="form-control btn btn-primary" type="submit" value="Entrar"/>
+						</div>
 					</form>
 				</div>
-				<div class="modal-footer">
-					<button class="form-control btn btn-primary" onclick=" location.href= 'votar.html'"">Entrar</button>
-				</div> 
 			</div>
 		</div>
+		<div class="modal fade" id="form2" tabindex="-5" role="dialog" aria-labelledby="etiqueta" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title" id="etiqueta">Registro</h4>
+					</div>
+					<div class="modal-body">
+						<form role="form">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="form-group">
+									<div class="input-group">
+										<label for="name"  class="input-group-addon" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nombre &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<input type="text" class="form-control" id="name" required>  
+									</div>
+								</div>
+							</div>
+							<br><br><br><br>
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="input-group">
+											<label for="apellido1" class="input-group-addon">&nbsp; Primer Apellido &nbsp;</label>
+											<input type="text" class="form-control" id="apellido1" required> 
+										</div>
+									</div>
+							</div>
+							<br><br><br><br>
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="input-group">
+											<label for="apellido2" class="input-group-addon">Segundo Apellido</label>
+											<input type="text" class="form-control" id="apellido2" required>  
+										</div>
+									</div>
+							</div>
+							<br><br><br><br>
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="input-group">
+											<label for="dni" class="input-group-addon">DNI</label>
+											<input type="text" class="form-control" id="dni" required>
+										</div>
+										<span class="help-block">DNI con Letra</span>
+									</div>
+							</div>
+							<br><br><br><br><br>
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="form-group">
+										<div class="input-group">
+											<label for="mail" class="input-group-addon">E-Mail</label>
+											<input type="email" class="form-control" id="mail" required>  
+										</div>
+									</div>
+							</div>
+							<br><br><br><br>
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+									<div class="form-group">
+										<div class="input-group">
+											<label for="contraseña" class="input-group-addon">Contraseña</label>
+											<input type="password" class="form-control" id="contraseña" required>  
+										</div>
+									</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+									<div class="form-group">
+										<div class="input-group">
+											<label for="contraseña" class="input-group-addon">Repetir contraseña</label>
+											<input type="password" class="form-control" id="contraseña" required>  
+										</div>
+									</div>
+							</div>
+							<br><br>		
+						</form>
+					</div>
+			<!-- RECOMMENDED if your web app will not function without JavaScript enabled -->
+    <noscript>
+      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+        Your web browser must have JavaScript enabled
+        in order for this application to display correctly.
+      </div>
+    </noscript>
+    
+    <div class="inicio">
+		<div class="modal fade" id="form1" tabindex="-5" role="dialog" aria-labelledby="etiqueta" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title" id="etiqueta">Log-In</h4>
+					</div>
+					<form action="/controlLogin" method="post" acceptcharset="utf-8">
+						<div class="modal-body">
+							<div class="form-group">
+								<div class="input-group">
+									<input class="form-control" type="text" name="usuario" placeholder="DNI"/>
+									<label for="usuario" class="input-group-addon glyphicon glyphicon-user"></label>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="input-group">
+									<input class="form-control" type="password" name="contraseña" placeholder="Contraseña"/>
+									<label for="contraseña" class="input-group-addon glyphicon glyphicon-lock"></label>
+								</div> 
+							</div> 
+						</div>
+						<div class ="modal-footer"> 						
+							<input class="form-control btn btn-primary" type="submit" value="Entrar"/>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 		<div class="modal fade" id="form2" tabindex="-5" role="dialog" aria-labelledby="etiqueta" aria-hidden="true">
 			<div class="modal-dialog">
@@ -182,6 +280,13 @@
 	
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="Bootstrap/js/bootstrap.min.js"></script>
-    
-  </body>
-</html>
+	<div class="modal-footer">
+						<button class="form-control btn btn-success">Registrarse</button>
+					</div> 
+				</div>
+			</div>
+		</div>
+	</div>
+	
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="Bootstrap/js/bootstrap.min.js"></script>

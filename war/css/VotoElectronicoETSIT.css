@@ -1,7 +1,7 @@
 /*Barra de Navegacion*/
 .navbar.navbar-fixed-top{
     border-bottom: 3px solid #746D6E;
-    background-color:white;
+    background-color:#FFFAFA;
 }
 
 .navbar.navbar-fixed-top{
@@ -32,9 +32,10 @@
 }
 /*Inicio*/
 html{
-	background-image:url("./Images/fondo.jpg");
 	width:100%;
 	height:100%;
+	background-image:url("../Images/fondo.jpg");
+	
 }
 h1{
 	font-family:'Roboto', sans-serif;
@@ -44,7 +45,6 @@ h3{
 	font-family:'Roboto', sans-serif;
     font-size: 40px;
 }
-
 #login{
 	font-family:'Roboto', sans-serif; 
 	font-size:20px; 
@@ -53,13 +53,23 @@ h3{
 	padding-left: 30px;
 	margin-left:50px;
 }
-#registro{
+#form2{
 	font-family:'Roboto', sans-serif; 
 	font-size:20px; 
 	padding:5px; 
 	padding-right:30px; 
 	padding-left: 30px;
 	margin-right:50px;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.registro{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+#alert{
+	margin-left:14px;
+	margin-right:14px;
 }
 /*Pagina de voto*/
 #tabla1 tr:nth-child(odd){
