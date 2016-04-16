@@ -2,6 +2,10 @@ package com.upm.isst.voto.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import com.upm.isst.voto.model.CensoModel;
 import com.upm.isst.voto.model.PoliticosModel;
 
 public class PoliticosDAOImpl implements PoliticosDAO {
@@ -9,8 +13,7 @@ public class PoliticosDAOImpl implements PoliticosDAO {
 
 private static PoliticosDAOImpl instance;
 	
-	public PoliticosDAOImpl() {
-		// TODO Auto-generated constructor stub
+	private PoliticosDAOImpl() {
 	}
 
 	public static PoliticosDAOImpl getInstance(){
@@ -20,70 +23,103 @@ private static PoliticosDAOImpl instance;
 	}
 
 	@Override
-	public PoliticosModel create(String nombre, String apellido1, String apellido2,
-			long dni, String provincia, String partido, long codigo) {
-		// TODO Auto-generated method stub
-		return null;
+	public PoliticosModel create(Long codigo, String nombreCompleto,
+			long dni, String provincia, String partido) {
+		EntityManager em = EMFService.get().createEntityManager();
+
+		PoliticosModel politico = new PoliticosModel(codigo, nombreCompleto, dni, provincia, partido);
+		em.persist(politico);
+		em.close();
+		return politico;
 	}
 
 	@Override
 	public List<PoliticosModel> read() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		Query q = em.createQuery("select t from PoliticosModel t");
+
+		List<PoliticosModel> politicos = q.getResultList();
+		em.close();
+		return politicos;
 	}
 
 	@Override
-	public List<PoliticosModel> readNombre(String nombre) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public List<PoliticosModel> readNombre(String nombreCompleto) {
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		Query q = em.createQuery("select t from PoliticosModel t where t.nombreCompleto = :nombreCompleto");
+		q.setParameter("nombreCompleto", nombreCompleto);
 
-	@Override
-	public List<PoliticosModel> readApellido1(String apellido1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<PoliticosModel> readApellido2(String apellido2) {
-		// TODO Auto-generated method stub
-		return null;
+		List<PoliticosModel> politicos = q.getResultList();
+		em.close();
+		return politicos;
 	}
 
 	@Override
 	public List<PoliticosModel> readDNI(long dni) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		Query q = em.createQuery("select t from PoliticosModel t where t.dni = :dni");
+		q.setParameter("dni", dni);
+
+		List<PoliticosModel> politicos = q.getResultList();
+		em.close();
+		return politicos;
 	}
 
 	@Override
 	public List<PoliticosModel> readProvincia(String provincia) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		Query q = em.createQuery("select t from PoliticosModel t where t.provincia = :provincia");
+		q.setParameter("provincia", provincia);
+
+		List<PoliticosModel> politicos = q.getResultList();
+		em.close();
+		return politicos;
 	}
 
 	@Override
 	public List<PoliticosModel> readPartido(String partido) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		Query q = em.createQuery("select t from PoliticosModel t where t.partido = :partido");
+		q.setParameter("partido", partido);
+
+		List<PoliticosModel> politicos = q.getResultList();
+		em.close();
+		return politicos;
 	}
 
 	@Override
-	public List<PoliticosModel> readCodigo(long codigo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PoliticosModel> readCodigo(Long codigo) {
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		Query q = em.createQuery("select t from PoliticosModel t where t.codigo = :codigo");
+		q.setParameter("codigo", codigo);
+
+		List<PoliticosModel> politicos = q.getResultList();
+		em.close();
+		return politicos;
 	}
 
 	@Override
-	public void update(PoliticosModel VOTO) {
-		// TODO Auto-generated method stub
-
+	public void update(PoliticosModel politico) {
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		em.merge(politico);
+				
+		em.close();
 	}
 
 	@Override
-	public void delete(PoliticosModel VOTO) {
-		// TODO Auto-generated method stub
-
+	public void delete(PoliticosModel politico) {
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		em.remove(politico);
+				
+		em.close();
 	}
 
 }
