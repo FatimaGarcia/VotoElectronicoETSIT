@@ -19,7 +19,7 @@ import com.upm.isst.voto.model.PoliticosModel;
 
 @SuppressWarnings("serial")
 public class ControlVoto extends HttpServlet{
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 	
 		String provincia = (String) req.getAttribute("provincia");
 		int numeroPoliticos = (int) req.getAttribute("numeroPoliticos");
@@ -32,6 +32,14 @@ public class ControlVoto extends HttpServlet{
 		dao.create((long) 8888, "Albert Rivera", (long) 8888, "Madrid", "Ciudadanos");
 		
 		List<PoliticosModel> politicos = dao.readProvincia(provincia);
+		
+		//for (PoliticosModel politico: politicos){
+			
+		req.setAttribute("candidatos", politicos);
+		req.setAttribute("numeroCandidatos", numeroPoliticos);
+		RequestDispatcher rd = req.getRequestDispatcher("/Votar.jsp");
+		rd.forward(req,resp);	
+		//}
 		
 		//resp.setContentType("text/plain");
 		//req.setAttribute("provincia", provincia);
