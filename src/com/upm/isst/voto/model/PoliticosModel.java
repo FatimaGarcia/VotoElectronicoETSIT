@@ -1,6 +1,6 @@
 package com.upm.isst.voto.model;
 
-import java.io.Serializable;
+import java.io.Serializable; 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +21,7 @@ public class PoliticosModel implements Serializable {
 	private String provincia;
 	@Column
 	private String partido;
+	
 	
 	public PoliticosModel(Long codigo, String nombreCompleto, long dni, 
 			 String provincia, String partido) {

@@ -1,6 +1,6 @@
 package com.upm.isst.voto.dao;
 
-import java.util.List;
+import java.util.List; 
 
 import com.upm.isst.voto.model.PoliticosModel;
 

@@ -10,6 +10,8 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.upm.isst.voto.dao.CEEDAO;
 import com.upm.isst.voto.dao.CEEDAOImpl;
+import com.upm.isst.voto.dao.ProvinciasDAO;
+import com.upm.isst.voto.dao.ProvinciasDAOImpl;
 import com.upm.isst.voto.model.CEEModel;
 
 @SuppressWarnings("serial")
@@ -22,6 +24,10 @@ public class ControlLoginServlet extends HttpServlet{
 		CEEDAO dao = CEEDAOImpl.getInstance();
 		dao.create((long) 44, "ana", "martin", "legorburo", "Madrid", "cuca");
 
+		ProvinciasDAO prov = ProvinciasDAOImpl.getInstance();
+		prov.create("Madrid", 2);
+		
+		
 		if (dao.readDNI(Long.parseLong(user))==null){
 			String mensaje = "Usuario o contraseña incorrectos";
 			req.setAttribute("mensaje", mensaje);
@@ -41,7 +47,7 @@ public class ControlLoginServlet extends HttpServlet{
 			String provincia = dao.readProvincia(Long.parseLong(user));
 			//TODO:
 
-			int numeroPoliticos = 2; 
+			int numeroPoliticos = prov.readNumeroCandidatos(provincia); 
 			//TODO:
 			//	Aquí acceder a la base de datos de políticos
 			//	int = dao.readNumeroPoliticos("provincia");

@@ -10,18 +10,22 @@
 
 
 <div class="voto">
-<form type="post" action="/enviarVoto">
-<div id="candidatos">
+<form type="post" id="candidatos" action="/enviarVoto">
+
 <h1>Elija un total de <c:out value="${numeroCandidatos}"/> candidatos</br></h1>
 <c:forEach items="${candidatos}" var="candidato">
 <input name="eleccion" type="checkbox" value=<c:out value="${candidato.codigo}"/>/>
 <c:out value="${candidato.nombreCompleto}"/></br>
 <c:out value="${candidato.partido}"/></br>
 </c:forEach> 
-</div>
 <input type="submit" value="Submit">
 </form>
-</div> 
+</div>
+
+<script type="text/javascript">
+checkboxlimit(document.forms.candidatos.eleccion,${numeroCandidatos});
+</script> 
+
 
 
 </body>

@@ -1,6 +1,6 @@
 package com.upm.isst.voto.dao;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -121,5 +121,4 @@ private static PoliticosDAOImpl instance;
 				
 		em.close();
 	}
-
 }
