@@ -10,16 +10,21 @@
 	<c:if test="${mensajeSuccess != null }">
 		<div class="alert alert-success text-center" id="success" role="alert"> <c:out value="${mensajeSuccess}"/> </div>
 	</c:if>
-    	<!-- Formulario de LogIn -->
-
-			<div class="modal-dialog">
+    <!-- Formulario de LogIn -->
+    <c:if test="${mensaje != null }">
+    	<div id="form1" class="modal fade in" style="display:block;">
+	</c:if>
+	<c:if test="${mensaje == null}">
+		<div class="modal fade" id="form1" tabindex="-5" role="dialog" aria-labelledby="etiqueta" aria-hidden="false">
+	</c:if>
+  			<div class="modal-dialog" id="dialogLogin">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header" id="headerLogin">
 						<a href="VotoElectronicoETSIT.jsp"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></a>
 						<h4 class="modal-title" id="etiqueta">Log-In</h4>
 					</div>
 					<form action="/controlLogin" method="post" acceptcharset="utf-8" id="loginForm">
-						<div class="modal-body">
+						<div class="modal-body" id="bodyLogin">
 							<div class="form-group">
 								<div class="input-group">
 									<label for="usuario" class="input-group-addon glyphicon glyphicon-user"></label>
@@ -33,15 +38,17 @@
 								</div> 
 							</div> 
 						</div>
-						<div>${mensaje}
-						</div>
-						<div class ="modal-footer"> 						
-							<input class="form-control btn btn-primary" type="submit" value="Entrar"/>
+						<c:if test="${mensaje != null }">
+							<div class="alert alert-danger text-center" role="alert" id="alertaL"> ${mensaje}</div>
+						</c:if>
+						<div class ="modal-footer" id="footerLogin"> 	
+							<input class="form-control btn btn-primary" id="btnLogin" type="submit" value="Entrar"/>
 						</div>
 					</form>
 				
 				</div>
 			</div>
+		</div>
 	<!-- Formulario de registro -->
 	<c:if test="${mensajeR != null }">
     	<div id="form2" class="modal fade in" style="display:block;">

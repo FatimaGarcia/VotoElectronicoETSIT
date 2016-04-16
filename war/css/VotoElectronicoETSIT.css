@@ -53,7 +53,7 @@ h3{
 	padding-left: 30px;
 	margin-left:50px;
 }
-/*Formulario de registro*/
+/*Formularios*/
 #form2{
 	font-family:'Roboto', sans-serif; 
 	font-size:20px; 
@@ -75,7 +75,6 @@ h3{
 	margin-top:0px;
 	padding-left:8px;	
 }
-/*Formulario de login*/
 .alert{
 	margin-left:12px;
 	margin-right:12px;
@@ -91,7 +90,7 @@ h3{
 	padding-right:10px;
 }
 #headerRegister{
-padding-top:5px;
+	padding-top:5px;
 	padding-bottom:5px;
 	padding-left:10px;
 	padding-right:10px;
@@ -114,6 +113,43 @@ padding-top:5px;
 	margin-left:0px; 
 	margin-right:0px;
 	font-size:25px;
+}
+#form1{
+	font-family:'Roboto', sans-serif; 
+	font-size:20px; 
+	padding-right:30px; 
+	padding-left: 30px;
+	margin-right:50px;
+	margin-top:0px;
+	margin-bottom:5px;
+}
+#alertaL{
+	padding:5px;
+}
+#footerLogin{
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:10px;
+	padding-right:10px;
+}
+#headerLogin{
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:10px;
+	padding-right:10px;
+}
+#btnLogin{
+	padding-top:5px;
+	padding-bottom:5px;
+}
+#bodyLogin{
+	padding-top:15px;
+	padding-bottom:15px;
+	padding-left:15px;
+	padding-right:15px;
+}
+#dialogLogin{
+	margin-top:5px;
 }
 /*Pagina de voto*/
 #tabla1 tr:nth-child(odd){
