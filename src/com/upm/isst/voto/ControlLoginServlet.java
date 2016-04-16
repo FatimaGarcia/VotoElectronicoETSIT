@@ -19,17 +19,18 @@ public class ControlLoginServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		String user = req.getParameter("usuario");
 		String password = req.getParameter("contrasena");
+		int autenticado = 0;
 		resp.setContentType("text/plain");
 
 		CEEDAO dao = CEEDAOImpl.getInstance();
 		dao.create((long) 44, "ana", "martin", "legorburo", "madrid", "cuca");
 
 		ProvinciasDAO prov = ProvinciasDAOImpl.getInstance();
-		prov.create("madrid", 3);
-		
+		/*prov.create("madrid", 3);
+		prov.create("albacete", 3);*/
 		
 		if (dao.readDNI(Long.parseLong(user))==null){
-			String mensaje = "Introduzca usuario y contrasena";
+			String mensaje = "Usuario y contrasena incorrectos";
 			req.setAttribute("mensaje", mensaje);
 			req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
 		}
@@ -43,17 +44,13 @@ public class ControlLoginServlet extends HttpServlet{
 
 		else if (dao.readContrasena(password, Long.parseLong(user))){
 			//Ir a otra pagina
-
+			autenticado = 1;
 			String provincia = dao.readProvincia(Long.parseLong(user));
-			//TODO:
-
 			int numeroPoliticos = prov.readNumeroCandidatos(provincia); 
-			//TODO:
-			//	Aquí acceder a la base de datos de políticos
-			//	int = dao.readNumeroPoliticos("provincia");
+			
 			req.setAttribute("provincia", provincia);
 			req.setAttribute("numeroPoliticos", numeroPoliticos);
-
+			req.setAttribute("autenticado", autenticado);
 			RequestDispatcher rd = req.getRequestDispatcher("/controlVoto");
 			rd.forward(req,resp);
 		

@@ -6,6 +6,10 @@
 <html>
 <%@ include file="headvoto.html" %>	
 <body>
+<c:if test="${autenticado != 1}">
+<a id="enlace" href="VotoElectronicoETSIT.jsp"><div class="alert alert-warning text-center" id="alerta">Usted no se ha autenticado en el sistema</div></a>
+</c:if>
+<c:if test="${autenticado == 1}">
 <%@ include file="navvoto.html" %> 
 <div class="voto">
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" >
@@ -59,6 +63,6 @@
  <script type="text/javascript">
  checkboxlimit(document.forms.candidatos.eleccion,${numeroCandidatos});
  </script> 
-
+</c:if>
 </body>
 </html>

@@ -8,6 +8,8 @@ import com.upm.isst.voto.dao.CensoDAO;
 import com.upm.isst.voto.dao.CensoDAOImpl;
 import com.upm.isst.voto.dao.PoliticosDAO;
 import com.upm.isst.voto.dao.PoliticosDAOImpl;
+import com.upm.isst.voto.dao.ProvinciasDAO;
+import com.upm.isst.voto.dao.ProvinciasDAOImpl;
 
 @SuppressWarnings("serial")
 public class CensoServlet extends HttpServlet {
@@ -17,17 +19,17 @@ public class CensoServlet extends HttpServlet {
 		CensoDAO dao = CensoDAOImpl.getInstance();
 
 		dao.create((long) 22454076, "rosa", "acien", "zuruta", 02462, "albacete", "albacete", "mayo", "espanola", "mujer", false );
-		dao.create((long) 75215071, "daniel", "albusac", "tamargo", 03170, "alicante", "alicante", "abril", "espanola", "hombre", false );
-		dao.create((long) 52801993, "jose", "alonso", "becerra", 25489, "lleida", "lleida", "febrero", "espanola", "hombre", false );
+		dao.create((long) 75215071, "daniel", "albusac", "tamargo", 02354, "albacete", "albacete", "abril", "espanola", "hombre", false );
+		dao.create((long) 52801993, "jose", "alonso", "becerra", 02544, "albacete", "albacete", "febrero", "espanola", "hombre", false );
 		dao.create((long) 34784976, "natalia", "benayas", "perez", 28701, "alcobendas", "madrid", "18/12/1949", "espanola", "mujer", false );
-		dao.create((long) 74340069, "francisco", "bernabe", "casanova", 03544, "alicante", "alicante", "02/02/1953", "espanola", "hombre", false );
-		dao.create((long) 76938954, "monica", "gongora", "rodriguez", 41111, "sevilla", "sevilla", "15/05/1978", "espanola", "mujer", false );
-		dao.create((long) 51465990, "beatriz", "garcia", "heras", 07555, "mallorca", "mallorca", "25/06/1991", "espanola", "mujer", false );
-		dao.create((long) 50933568, "luis", "garrido", "ruiz", 22532, "huesca", "huesca", "06/12/1994", "espanola", "hombre", false );
-		dao.create((long) 43815329, "david", "gonzalez", "ruiz", 51445, "ceuta", "ceuta", "18/08/1983", "espanola", "hombre", false );
-		dao.create((long) 22479862, "jorge", "gonzalez", "navas", 05153, "avila", "avila", "20/03/1957",  "espanola", "hombre", false );
-		dao.create((long) 15254626, "irene", "amate", "garrido", 16152, "cuenca", "cuenca", "28/02/1971", "espanola", "mujer", false );
-		dao.create((long) 22473780, "magdalena", "aparicio", "garcia", 34652, "palencia", "palencia", "15/11/1938", "espanola", "mujer", false );
+		dao.create((long) 74340069, "francisco", "bernabe", "casanova", 28458, "madrid", "madrid", "02/02/1953", "espanola", "hombre", false );
+		dao.create((long) 76938954, "monica", "gongora", "rodriguez", 28700, "madrid", "madrid", "15/05/1978", "espanola", "mujer", false );
+		dao.create((long) 51465990, "beatriz", "garcia", "heras", 28965, "madrid", "madrid", "25/06/1991", "espanola", "mujer", false );
+		dao.create((long) 50933568, "luis", "garrido", "ruiz", 02363, "albacete", "albacete", "06/12/1994", "espanola", "hombre", false );
+		dao.create((long) 43815329, "david", "gonzalez", "ruiz", 02114, "albacete", "albacete", "18/08/1983", "espanola", "hombre", false );
+		dao.create((long) 22479862, "jorge", "gonzalez", "navas", 02633, "albacete", "albacete", "20/03/1957",  "espanola", "hombre", false );
+		dao.create((long) 15254626, "irene", "amate", "garrido", 28114, "madrid", "madrid", "28/02/1971", "espanola", "mujer", false );
+		dao.create((long) 22473780, "magdalena", "aparicio", "garcia", 28485, "madrid", "madrid", "15/11/1938", "espanola", "mujer", false );
 		dao.create((long) 22, "ana", "martin", "legorburo", 28036, "madrid", "madrid", "15/11/1938", "espanola", "mujer", false);
 		
 		
@@ -74,5 +76,9 @@ public class CensoServlet extends HttpServlet {
 		dao1.create((long) 41, "Francisco Javier Ortega Smith-Molina", "madrid", "VOX", 8);
 		dao1.create((long) 42, "Ivan Espinosa de los Monteros de Simon", "madrid", "VOX", 8);
 		dao1.create((long) 43, "Carmen Lomana", "madrid", "VOX", 8);
+		
+		ProvinciasDAO prov = ProvinciasDAOImpl.getInstance();
+		prov.create("madrid", 3);
+		prov.create("albacete", 3);
 	}
 }

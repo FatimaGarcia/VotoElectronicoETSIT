@@ -85,3 +85,10 @@ h2{
 	padding-left: 30px;
 	margin-bottom:20px;
 }
+#alerta{
+	margin-top:40px;
+	font-size:40px;
+}
+#enlace{
+	text-decoration: none;
+}

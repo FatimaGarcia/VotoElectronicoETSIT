@@ -20,7 +20,7 @@ import com.upm.isst.voto.model.PoliticosModel;
 @SuppressWarnings("serial")
 public class ControlVoto extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-	
+		int autenticado = (int) req.getAttribute("autenticado");
 		String provincia = (String) req.getAttribute("provincia");
 		int numeroPoliticos = (int) req.getAttribute("numeroPoliticos");
 		resp.setContentType("text/plain");
@@ -38,6 +38,7 @@ public class ControlVoto extends HttpServlet{
 		req.setAttribute("candidatos", politicos);
 		req.setAttribute("numeroCandidatos", numeroPoliticos);
 		req.setAttribute("provincia", provincia.toUpperCase());
+		req.setAttribute("autenticado", autenticado);
 		RequestDispatcher rd = req.getRequestDispatcher("/Votar.jsp");
 		rd.forward(req,resp);	
 		//}
