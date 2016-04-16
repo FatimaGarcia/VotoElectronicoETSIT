@@ -14,18 +14,18 @@ public class CensoServlet extends HttpServlet {
 		/*Servlet que inicia la base de datos del censo con los elementos de abajo*/
 		CensoDAO dao = CensoDAOImpl.getInstance();
 
-		dao.create((long) 22454076, "Rosa", "Acien", "Zuruta", 02462, "Albacete", "Albacete", "mayo", "Espaï¿½ola", "Mujer", false );
-		dao.create((long) 75215071, "Daniel", "Albusac", "Tamargo", 03170, "Alicante", "Alicante", "abril", "Espaï¿½ola", "Hombre", false );
-		dao.create((long) 52801993, "Jose", "Alonso", "Becerra", 25489, "Lleida", "Lleida", "febrero", "Espaï¿½ola", "Hombre", false );
-		dao.create((long) 34784976, "Natalia", "Benayas", "Perez", 28701, "Alcobendas", "Madrid", "18/12/1949", "Espaï¿½ola", "Mujer", false );
-		dao.create((long) 74340069, "Francisco", "Bernabe", "Casanova", 03544, "Alicante", "Alicante", "02/02/1953", "Espaï¿½ola", "Hombre", false );
-		dao.create((long) 76938954, "Monica", "Gongora", "Rodriguez", 41111, "Sevilla", "Sevilla", "15/05/1978", "Espaï¿½ola", "Mujer", false );
-		dao.create((long) 51465990, "Beatriz", "Garcia", "Heras", 07555, "Mallorca", "Mallorca", "25/06/1991", "Espaï¿½ola", "Mujer", false );
-		dao.create((long) 50933568, "Luis", "Garrido", "Ruiz", 22532, "Huesca", "Huesca", "06/12/1994", "Espaï¿½ola", "Hombre", false );
-		dao.create((long) 43815329, "David", "Gonzalez", "Ibaï¿½ez", 51445, "Ceuta", "Ceuta", "18/08/1983", "Espaï¿½ola", "Hombre", false );
-		dao.create((long) 22479862, "Jorge", "Gonzalez", "Navas", 05153, "Avila", "Avila", "20/03/1957",  "Espaï¿½ola", "Hombre", false );
-		dao.create((long) 15254626, "Irene", "Amate", "Garrido", 16152, "Cuenca", "Cuenca", "28/02/1971", "Espaï¿½ola", "Mujer", false );
-		dao.create((long) 22473780, "Magdalena", "Aparicio", "Garcia", 34652, "Palencia", "Palencia", "15/11/1938", "Espaï¿½ola", "Mujer", false );
+		dao.create((long) 22454076, "rosa", "acien", "zuruta", 02462, "albacete", "albacete", "mayo", "española", "mujer", false );
+		dao.create((long) 75215071, "daniel", "albusac", "tamargo", 03170, "alicante", "alicante", "abril", "española", "hombre", false );
+		dao.create((long) 52801993, "jose", "alonso", "becerra", 25489, "lleida", "lleida", "febrero", "española", "hombre", false );
+		dao.create((long) 34784976, "natalia", "benayas", "perez", 28701, "alcobendas", "madrid", "18/12/1949", "española", "mujer", false );
+		dao.create((long) 74340069, "francisco", "bernabe", "casanova", 03544, "alicante", "alicante", "02/02/1953", "española", "hombre", false );
+		dao.create((long) 76938954, "monica", "gongora", "rodriguez", 41111, "sevilla", "sevilla", "15/05/1978", "española", "mujer", false );
+		dao.create((long) 51465990, "beatriz", "garcia", "heras", 07555, "mallorca", "mallorca", "25/06/1991", "española", "mujer", false );
+		dao.create((long) 50933568, "luis", "garrido", "ruiz", 22532, "huesca", "huesca", "06/12/1994", "española", "hombre", false );
+		dao.create((long) 43815329, "david", "gonzalez", "ruiz", 51445, "ceuta", "ceuta", "18/08/1983", "española", "hombre", false );
+		dao.create((long) 22479862, "jorge", "gonzalez", "navas", 05153, "avila", "avila", "20/03/1957",  "española", "hombre", false );
+		dao.create((long) 15254626, "irene", "amate", "garrido", 16152, "cuenca", "cuenca", "28/02/1971", "española", "mujer", false );
+		dao.create((long) 22473780, "magdalena", "aparicio", "garcia", 34652, "palencia", "palencia", "15/11/1938", "española", "mujer", false );
 	
 	}
 }

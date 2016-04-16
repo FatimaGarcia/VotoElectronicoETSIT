@@ -7,9 +7,11 @@
 <%@ include file="head.html" %>	
 <body>
 <%@ include file="nav.html" %> 
-    <div class="inicio">
+	<c:if test="${mensajeSuccess != null }">
+		<div class="alert alert-success text-center" id="success" role="alert"> <c:out value="${mensajeSuccess}"/> </div>
+	</c:if>
     	<!-- Formulario de LogIn -->
-		
+
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -40,35 +42,34 @@
 				
 				</div>
 			</div>
-		</div>
 	<!-- Formulario de registro -->
 	<c:if test="${mensajeR != null }">
-    		<div id="form2" class="modal fade in" style="display:block;">
+    	<div id="form2" class="modal fade in" style="display:block;">
 	</c:if>
 	<c:if test="${mensajeR == null}">
 		<div class="modal fade" id="form2" tabindex="-5" role="dialog" aria-labelledby="etiqueta" aria-hidden="true">
 	</c:if>
-			<div class="modal-dialog">
+			<div class="modal-dialog" id="dialogRegister">
 				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<div class="modal-header" id="headerRegister">
+						<a href="VotoElectronicoETSIT.jsp"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></a>
 						<h4 class="modal-title" id="etiqueta">Registro</h4>
 					</div>
 					<form id="registrationForm" method="post" action="controlRegistro">
-						<div class="modal-body">
-							<div class="form-group">
+						<div class="modal-body" id="bodyRegister">
+							<div class="form-group" style="margin-bottom:7px;">
 								<div class="input-group registro">
 									<label for="nombre"  class="input-group-addon" style="padding-right:78px;" >Nombre</label>
 									<input type="text" class="form-control" name="nombre" > 
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="margin-bottom:7px;">
 								<div class="input-group registro">
 									<label for="apellido1" class="input-group-addon" style="padding-right:33px;">Primer Apellido</label>
 									<input type="text" class="form-control" name="apellido1"  >
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="margin-bottom:7px;">
 								<div class="input-group registro">
 									<label for="apellido2" class="input-group-addon" style="padding-right:21px;">Segundo Apellido</label>
 									<input type="text" class="form-control" name="apellido2" >  
@@ -87,7 +88,7 @@
 									<input type="email" class="form-control" name="mail" >  
 							</div>	
 							</div>
-							<div class="form-group">
+							<div class="form-group" style="margin-bottom:7px;">
 								<div class="input-group registro">
 									<label for="provincia" class="input-group-addon" style="padding-right:72px;">Provincia</label>
 									<input type="text" class="form-control" name="provincia" >  
@@ -101,16 +102,15 @@
 							</div>
 							<span class="help-block" style="font-size:13px; margin-left:10px;">6-10 caracteres</span>
 						</div>
-						<div class="modal-footer">
+						<div class="modal-footer" id="footerRegister">
 							<input type="submit" class="form-control btn btn-success" value="Registrarse" />
 						</div>
 					</form>
 					<c:if test="${mensajeR != null }">
-						<div class="alert alert-danger text-center" role="alert"> <c:out value="${mensajeR}"/> </div>
+						<div id ="alertaR" class="alert alert-danger text-center" role="alert"> <c:out value="${mensajeR}"/> </div>
 					</c:if>
 				</div>
 			</div>		
-		</div>
 	<script type="text/javascript" src="validator.js"> </script>
 
 </body>

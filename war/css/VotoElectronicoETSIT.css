@@ -60,23 +60,60 @@ h3{
 	padding-right:30px; 
 	padding-left: 30px;
 	margin-right:50px;
-	margin-top:10px;
-	margin-bottom:10px;
+	margin-top:0px;
+	margin-bottom:5px;
 }
+
 .registro{
-	margin-top:10px;
-	margin-bottom:10px;
+	margin-top:5px;
+	margin-bottom:5px;
 }
 .form-group{
 	font-family:'Roboto', sans-serif; 
 	font-size:15px;
 	margin-bottom:0px;
+	margin-top:0px;
 	padding-left:8px;	
 }
 /*Formulario de login*/
-#alert{
-	margin-left:14px;
-	margin-right:14px;
+.alert{
+	margin-left:12px;
+	margin-right:12px;
+	font-size:15px;
+}
+#alertaR{
+	padding:5px;
+}
+#footerRegister{
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:10px;
+	padding-right:10px;
+}
+#headerRegister{
+padding-top:5px;
+	padding-bottom:5px;
+	padding-left:10px;
+	padding-right:10px;
+}
+#btnRegister{
+	padding-top:3px;
+	padding-bottom:3px;
+}
+#bodyRegister{
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:10px;
+	padding-right:10px;
+}
+#dialogRegister{
+	margin-top:5px;
+}
+#success{
+	margin-top:50px; 
+	margin-left:0px; 
+	margin-right:0px;
+	font-size:25px;
 }
 /*Pagina de voto*/
 #tabla1 tr:nth-child(odd){
