@@ -25,7 +25,7 @@ public class ControlLoginServlet extends HttpServlet{
 		dao.create((long) 44, "ana", "martin", "legorburo", "madrid", "cuca");
 
 		ProvinciasDAO prov = ProvinciasDAOImpl.getInstance();
-		prov.create("madrid", 2);
+		prov.create("madrid", 3);
 		
 		
 		if (dao.readDNI(Long.parseLong(user))==null){

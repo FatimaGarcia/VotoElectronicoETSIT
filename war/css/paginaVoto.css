@@ -30,3 +30,58 @@
 #logo{
 	margin-top:0px;
 }
+/*Pagina de votacion*/
+html{
+	width:100%;
+	height:100%;
+	background-color:#FFEBCD;
+}
+.voto{
+	margin-top:60px;
+	background-color:#FFEBCD;
+}
+h1{
+	font-family:'Roboto', sans-serif;
+    font-size: 40px;
+    text-align:center;
+}
+h2{
+	font-family:'Roboto', sans-serif;
+    font-size: 40px;
+}
+
+#subtitulo{
+	margin-bottom:15px;
+	margin-top:10px;
+    font-size: 40px;
+}
+#tabla1 td{
+		font-family:'Roboto', sans-serif; 
+	font-size:20px; 
+}
+#tabla1 tr:nth-child(odd){
+	border:none;
+	background-color:#D3D3D3;
+}
+#tabla1 tr:nth-child(even){
+	border: none;
+	background-color: #526666;
+	color:white;
+}
+#btn1{
+	font-family:'Roboto', sans-serif; 
+	font-size:20px; 
+	padding:5px; 
+	padding-right:30px; 
+	padding-left: 30px;
+		margin-bottom:20px;
+	
+}
+#btn2{
+	font-family:'Roboto', sans-serif; 
+	font-size:20px; 
+	padding:5px; 
+	padding-right:30px; 
+	padding-left: 30px;
+	margin-bottom:20px;
+}

@@ -24,10 +24,10 @@ private static PoliticosDAOImpl instance;
 
 	@Override
 	public PoliticosModel create(Long codigo, String nombreCompleto,
-							String provincia, String partido) {
+							String provincia, String partido, int codPartido) {
 		EntityManager em = EMFService.get().createEntityManager();
 
-		PoliticosModel politico = new PoliticosModel(codigo, nombreCompleto, provincia, partido);
+		PoliticosModel politico = new PoliticosModel(codigo, nombreCompleto, provincia, partido, codPartido);
 		em.persist(politico);
 		em.close();
 		return politico;

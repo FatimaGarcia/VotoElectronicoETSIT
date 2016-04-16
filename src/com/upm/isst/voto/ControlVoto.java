@@ -37,6 +37,7 @@ public class ControlVoto extends HttpServlet{
 			
 		req.setAttribute("candidatos", politicos);
 		req.setAttribute("numeroCandidatos", numeroPoliticos);
+		req.setAttribute("provincia", provincia.toUpperCase());
 		RequestDispatcher rd = req.getRequestDispatcher("/Votar.jsp");
 		rd.forward(req,resp);	
 		//}
