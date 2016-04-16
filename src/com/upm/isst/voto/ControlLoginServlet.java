@@ -1,6 +1,6 @@
 package com.upm.isst.voto;
 
-import java.io.IOException; 
+import java.io.IOException;  
 import java.io.PrintWriter;
 
 import javax.servlet.http.*;
@@ -24,6 +24,15 @@ public class ControlLoginServlet extends HttpServlet{
 
 		if (dao.readDNI(Long.parseLong(user))==null){
 			String mensaje = "Usuario o contraseña incorrectos";
+			req.setAttribute("mensaje", mensaje);
+			try {
+				req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
+			} catch (ServletException e) {
+				e.printStackTrace();
+			}
+		}
+		else if(dao.readVoto(Long.parseLong(user))){
+			String mensaje = "Usted ya ha votado";
 			req.setAttribute("mensaje", mensaje);
 			try {
 				req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);

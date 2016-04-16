@@ -95,15 +95,20 @@ public class CEEDAOImpl implements CEEDAO {
 		CEEModel entradaCEE= readDNI(dni);
 		return entradaCEE.getProvincia();
 	}
+	
+	public Boolean readVoto(Long dni) {
+		CEEModel entradaCEE= readDNI(dni);
+		return entradaCEE.getVoto();
+	}
 
 	@Override
-	public void update(CEEModel VOTO) {
+	public void update(CEEModel Voto) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void delete(CEEModel VOTO) {
+	public void delete(CEEModel Voto) {
 		// TODO Auto-generated method stub
 
 	}
