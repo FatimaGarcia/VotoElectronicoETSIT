@@ -22,14 +22,14 @@ public class ControlLoginServlet extends HttpServlet{
 		resp.setContentType("text/plain");
 
 		CEEDAO dao = CEEDAOImpl.getInstance();
-		dao.create((long) 44, "ana", "martin", "legorburo", "Madrid", "cuca");
+		dao.create((long) 44, "ana", "martin", "legorburo", "madrid", "cuca");
 
 		ProvinciasDAO prov = ProvinciasDAOImpl.getInstance();
-		prov.create("Madrid", 2);
+		prov.create("madrid", 2);
 		
 		
 		if (dao.readDNI(Long.parseLong(user))==null){
-			String mensaje = "Usuario o contraseña incorrectos";
+			String mensaje = "Introduzca usuario y contrasena";
 			req.setAttribute("mensaje", mensaje);
 			req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
 		}
@@ -58,7 +58,7 @@ public class ControlLoginServlet extends HttpServlet{
 			rd.forward(req,resp);
 		
 		}else{
-			String mensaje = "Usuario o contraseña incorrectos";
+			String mensaje = "Usuario o contrasena incorrectos";
 			req.setAttribute("mensaje", mensaje);
 			req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
 		}

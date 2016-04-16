@@ -16,18 +16,15 @@ public class PoliticosModel implements Serializable {
 	@Column
 	private String nombreCompleto;
 	@Column
-	private long dni;
-	@Column
 	private String provincia;
 	@Column
 	private String partido;
 	
 	
-	public PoliticosModel(Long codigo, String nombreCompleto, long dni, 
+	public PoliticosModel(Long codigo, String nombreCompleto, 
 			 String provincia, String partido) {
 		// TODO Auto-generated constructor stub
 		this.nombreCompleto = nombreCompleto;
-		this.dni = dni;
 		this.provincia = provincia;
 		this.partido = partido;
 		this.codigo = codigo;
@@ -45,12 +42,6 @@ public class PoliticosModel implements Serializable {
 	public void setNombreCompleto(String nombreCompleto) {
 		this.nombreCompleto = nombreCompleto;
 	}
-	public long getDni() {
-		return dni;
-	}
-	public void setDni(long dni) {
-		this.dni = dni;
-	}
 	public String getProvincia() {
 		return provincia;
 	}
@@ -66,7 +57,7 @@ public class PoliticosModel implements Serializable {
 	@Override
 	public String toString() {
 		return "Politico [Codigo=" + codigo + ", Nombre=" + nombreCompleto
-				+ ", DNI=" + dni + ", Provincia=" + provincia
+				+ ", Provincia=" + provincia
 				+ ", Partido politico=" + partido + "]";
 	}
 }

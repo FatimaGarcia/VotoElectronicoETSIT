@@ -1,0 +1,32 @@
+/*Barra de Navegacion*/
+.navbar.navbar-fixed-top{
+    border-bottom: 3px solid #746D6E;
+    background-color:#FFFAFA;
+}
+
+.navbar.navbar-fixed-top{
+	font-family:'Roboto', sans-serif;
+    font-size: 15px;
+}
+.nav.navbar-nav.navbar-right li a{
+    color:#526666;
+    letter-spacing: 1px;
+    padding-left:20px;
+    padding-right:20px;
+}
+.nav.navbar-nav li a:hover{
+    background-color:#708090;
+    text-decoration: none;
+    color:#F4F3F3;
+}
+#nav{
+	display:inline-block;
+	margin-top:15px;
+	margin-left:15px;
+	font-family:'Roboto', sans-serif;
+    font-size: 15px;
+	
+}
+#logo{
+	margin-top:0px;
+}

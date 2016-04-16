@@ -24,10 +24,10 @@ private static PoliticosDAOImpl instance;
 
 	@Override
 	public PoliticosModel create(Long codigo, String nombreCompleto,
-			long dni, String provincia, String partido) {
+							String provincia, String partido) {
 		EntityManager em = EMFService.get().createEntityManager();
 
-		PoliticosModel politico = new PoliticosModel(codigo, nombreCompleto, dni, provincia, partido);
+		PoliticosModel politico = new PoliticosModel(codigo, nombreCompleto, provincia, partido);
 		em.persist(politico);
 		em.close();
 		return politico;
@@ -50,18 +50,6 @@ private static PoliticosDAOImpl instance;
 		
 		Query q = em.createQuery("select t from PoliticosModel t where t.nombreCompleto = :nombreCompleto");
 		q.setParameter("nombreCompleto", nombreCompleto);
-
-		List<PoliticosModel> politicos = q.getResultList();
-		em.close();
-		return politicos;
-	}
-
-	@Override
-	public List<PoliticosModel> readDNI(long dni) {
-		EntityManager em = EMFService.get().createEntityManager();
-		
-		Query q = em.createQuery("select t from PoliticosModel t where t.dni = :dni");
-		q.setParameter("dni", dni);
 
 		List<PoliticosModel> politicos = q.getResultList();
 		em.close();

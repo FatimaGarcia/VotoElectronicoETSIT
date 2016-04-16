@@ -26,10 +26,10 @@ public class ControlVoto extends HttpServlet{
 		resp.setContentType("text/plain");
 
 		PoliticosDAO dao = PoliticosDAOImpl.getInstance();
-		dao.create((long) 5555, "Pablo Iglesias", (long) 5555, "Madrid", "Podemos");
-		dao.create((long) 6666, "Rajoy", (long) 6666, "Salamanca", "PP");
-		dao.create((long) 7777, "Sanchez", (long) 7777, "Madrid", "PSOE");
-		dao.create((long) 8888, "Albert Rivera", (long) 8888, "Madrid", "Ciudadanos");
+		/*dao.create((long) 5555, "Pablo Iglesias", "Madrid", "Podemos");
+		dao.create((long) 6666, "Rajoy",  "Salamanca", "PP");
+		dao.create((long) 7777, "Sanchez",  "Madrid", "PSOE");
+		dao.create((long) 8888, "Albert Rivera", "Madrid", "Ciudadanos";*/
 		
 		List<PoliticosModel> politicos = dao.readProvincia(provincia);
 		
