@@ -14,31 +14,25 @@ import com.upm.isst.voto.model.CEEModel;
 
 @SuppressWarnings("serial")
 public class ControlLoginServlet extends HttpServlet{
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		String user = req.getParameter("usuario");
 		String password = req.getParameter("contrasena");
 		resp.setContentType("text/plain");
 
 		CEEDAO dao = CEEDAOImpl.getInstance();
-		dao.create((long) 51110701, "ana", "martin", "legorburo", "madrid", "cuca");
+		dao.create((long) 44, "ana", "martin", "legorburo", "Madrid", "cuca");
 
 		if (dao.readDNI(Long.parseLong(user))==null){
 			String mensaje = "Usuario o contraseña incorrectos";
 			req.setAttribute("mensaje", mensaje);
-			try {
-				req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
-			} catch (ServletException e) {
-				e.printStackTrace();
-			}
+			req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
 		}
 		else if(dao.readVoto(Long.parseLong(user))){
 			String mensaje = "Usted ya ha votado";
 			req.setAttribute("mensaje", mensaje);
-			try {
+			
 				req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
-			} catch (ServletException e) {
-				e.printStackTrace();
-			}
+	
 		}
 
 		else if (dao.readContrasena(password, Long.parseLong(user))){
@@ -47,23 +41,20 @@ public class ControlLoginServlet extends HttpServlet{
 			String provincia = dao.readProvincia(Long.parseLong(user));
 			//TODO:
 
-			int numeroPoliticos = 5; 
+			int numeroPoliticos = 2; 
 			//TODO:
 			//	Aquí acceder a la base de datos de políticos
 			//	int = dao.readNumeroPoliticos("provincia");
 			req.setAttribute("provincia", provincia);
 			req.setAttribute("numeroPoliticos", numeroPoliticos);
 
-				resp.sendRedirect("Votar.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("/controlVoto");
+			rd.forward(req,resp);
 		
 		}else{
 			String mensaje = "Usuario o contraseña incorrectos";
 			req.setAttribute("mensaje", mensaje);
-			try {
-				req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
-			} catch (ServletException e) {
-				e.printStackTrace();
-			}
+			req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
 		}
 	}
 }

@@ -7,7 +7,7 @@
 <%@ include file="head.html" %>	
 <body>
 <%@ include file="nav.html" %> 
-<jsp:include page="ControlVoto" />
+<jsp:include page="/controlVoto" />
     <div class="inicio">
     	<!-- Formulario de LogIn -->
 		<c:if test="${mensaje != null }">
