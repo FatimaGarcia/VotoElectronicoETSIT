@@ -9,12 +9,7 @@
 <%@ include file="nav.html" %> 
     <div class="inicio">
     	<!-- Formulario de LogIn -->
-    	<c:if test="${mensaje != null }">
-    		<div id="form1" class="modal fade in" style="display:block;">
-		</c:if>
-		<c:if test="${mensaje == null}">
-			<div class="modal fade" id="form1" tabindex="-5" role="dialog" aria-labelledby="etiqueta" aria-hidden="false">
-		</c:if>
+		
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -26,23 +21,23 @@
 							<div class="form-group">
 								<div class="input-group">
 									<label for="usuario" class="input-group-addon glyphicon glyphicon-user"></label>
-									<input class="form-control" type="text" name="usuario" placeholder="DNI"/>
+									<input class="form-control" type="number" name="usuario" required placeholder="DNI"/>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="input-group">									
 									<label for="contraseña" class="input-group-addon glyphicon glyphicon-lock"></label>
-									<input class="form-control" type="password" name="contrasena" placeholder="Contraseña"/>
+									<input class="form-control" type="password" name="contrasena" required placeholder="Contraseña"/>
 								</div> 
 							</div> 
+						</div>
+						<div>${mensaje}
 						</div>
 						<div class ="modal-footer"> 						
 							<input class="form-control btn btn-primary" type="submit" value="Entrar"/>
 						</div>
 					</form>
-					<c:if test="${mensaje != null }">
-						<div class="alert alert-danger text-center" role="alert" id="alert"> <c:out value="${mensaje}"/> </div>
-					</c:if>
+				
 				</div>
 			</div>
 		</div>

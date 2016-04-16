@@ -1,8 +1,10 @@
 package com.upm.isst.voto.dao;
 
-import java.util.List;
+import java.util.List;  
 
-import com.upm.isst.voto.model.CensoModel;
+import javax.persistence.*;
+
+import com.upm.isst.voto.model.CEEModel;
 
 public class CEEDAOImpl implements CEEDAO {
 
@@ -19,66 +21,85 @@ public class CEEDAOImpl implements CEEDAO {
 	}
 	
 	@Override
-	public CensoModel create(String nombre, String apellido1, String apellido2,
-			long dni, String provincia, String contrasena) {
-		// TODO Auto-generated method stub
-		//EntityManager e m = EMFService.get().createEntityManager();
-		//Hacer lo que sea con la bbdd
-		//em.close();
+	public CEEModel create(Long dni, String nombre, String apellido1, String apellido2,
+			 String provincia, String contrasena) {
 		
-		return null;
+		CEEModel entradaCEE = null;
+		
+		EntityManager em = EMFService.get().createEntityManager();
+		entradaCEE = new CEEModel(dni, nombre, apellido1, apellido2, provincia, contrasena);
+		em.persist(entradaCEE);
+		em.close();
+		
+		return entradaCEE;
 	}
 
+	
+	
 	@Override
-	public List<CensoModel> read() {
+	public List<CEEModel> read() {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select m from CEEModel m"); 
+		List<CEEModel> res=q.getResultList();
+		em.close();
+		return res;
+	}
+
+	
+	@Override
+	public List<CEEModel> readNombre(String nombre) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<CensoModel> readNombre(String nombre) {
+	public List<CEEModel> readApellido1(String apellido1) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<CensoModel> readApellido1(String apellido1) {
+	public List<CEEModel> readApellido2(String apellido2) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<CensoModel> readApellido2(String apellido2) {
+	public CEEModel readDNI(Long dni) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select t from CEEModel t where t.dni = :dni"); 
+		q.setParameter("dni", dni);
+		CEEModel entradaCEE= (CEEModel) (q.getResultList());
+		em.close();
+		return entradaCEE;
+	}
+
+	@Override
+	public List<CEEModel> readProvincia(String provincia) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<CensoModel> readDNI(long dni) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean readContrasena(String contrasena, Long dni) {
+		CEEModel entradaCEE= readDNI(dni);
+		if (entradaCEE.getContrasena()==contrasena) return true;
+		return false;
+	}
+	
+	public String readProvincia(Long dni) {
+		CEEModel entradaCEE= readDNI(dni);
+		return entradaCEE.getProvincia();
 	}
 
 	@Override
-	public List<CensoModel> readProvincia(String provincia) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<CensoModel> readContrasena(String contrasena) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void update(CensoModel VOTO) {
+	public void update(CEEModel VOTO) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void delete(CensoModel VOTO) {
+	public void delete(CEEModel VOTO) {
 		// TODO Auto-generated method stub
 
 	}

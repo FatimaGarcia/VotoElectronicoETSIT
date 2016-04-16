@@ -2,18 +2,19 @@ package com.upm.isst.voto.dao;
 
 import java.util.List;
 
-import com.upm.isst.voto.model.CensoModel;
+import com.upm.isst.voto.model.CEEModel;
 
 public interface CEEDAO {
-	public CensoModel create(String nombre, String apellido1, String apellido2, long dni, 
+	public CEEModel create(Long dni, String nombre, String apellido1, String apellido2, 
 			 String provincia, String contrasena);
-	public List<CensoModel> read();
-	public List<CensoModel> readNombre(String nombre);
-	public List<CensoModel> readApellido1(String apellido1);
-	public List<CensoModel> readApellido2(String apellido2);
-	public List<CensoModel> readDNI(long dni);
-	public List<CensoModel> readProvincia(String provincia);
-	public List<CensoModel> readContrasena(String contrasena);
-	public void update(CensoModel VOTO);
-	public void delete(CensoModel VOTO);
+	public List<CEEModel> read();
+	public List<CEEModel> readNombre(String nombre);
+	public List<CEEModel> readApellido1(String apellido1);
+	public List<CEEModel> readApellido2(String apellido2);
+	public CEEModel readDNI(Long dni);
+	public List<CEEModel> readProvincia(String provincia);
+	public Boolean readContrasena(String contrasena, Long dni);
+	public String readProvincia(Long dni);
+	public void update(CEEModel VOTO);
+	public void delete(CEEModel VOTO);
 }
