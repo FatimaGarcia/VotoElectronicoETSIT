@@ -8,6 +8,5 @@
 <body>
 <%@ include file="nav.html" %> 
 hola fati
-<c:out value="${mensaje}"/>
 </body>
 </html>

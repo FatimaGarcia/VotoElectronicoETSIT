@@ -2,6 +2,8 @@ package com.upm.isst.voto;
 
 import javax.servlet.http.HttpServlet;
 
+import com.upm.isst.voto.dao.CEEDAO;
+import com.upm.isst.voto.dao.CEEDAOImpl;
 import com.upm.isst.voto.dao.CensoDAO;
 import com.upm.isst.voto.dao.CensoDAOImpl;
 
@@ -10,7 +12,7 @@ public class CensoServlet extends HttpServlet {
 
 	public void init(){
 		/*Servlet que inicia la base de datos del censo con los elementos de abajo*/
-		/*CensoDAO dao = CensoDAOImpl.getInstance();
+		CensoDAO dao = CensoDAOImpl.getInstance();
 
 		dao.create((long) 22454076, "Rosa", "Acien", "Zuruta", 02462, "Albacete", "Albacete", "mayo", "Espa�ola", "Mujer", false );
 		dao.create((long) 75215071, "Daniel", "Albusac", "Tamargo", 03170, "Alicante", "Alicante", "abril", "Espa�ola", "Hombre", false );
@@ -24,6 +26,6 @@ public class CensoServlet extends HttpServlet {
 		dao.create((long) 22479862, "Jorge", "Gonzalez", "Navas", 05153, "Avila", "Avila", "20/03/1957",  "Espa�ola", "Hombre", false );
 		dao.create((long) 15254626, "Irene", "Amate", "Garrido", 16152, "Cuenca", "Cuenca", "28/02/1971", "Espa�ola", "Mujer", false );
 		dao.create((long) 22473780, "Magdalena", "Aparicio", "Garcia", 34652, "Palencia", "Palencia", "15/11/1938", "Espa�ola", "Mujer", false );
-	}*/
-		}
+	
+	}
 }

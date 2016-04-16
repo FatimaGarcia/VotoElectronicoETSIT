@@ -42,7 +42,12 @@
 			</div>
 		</div>
 	<!-- Formulario de registro -->
+	<c:if test="${mensajeR != null }">
+    		<div id="form2" class="modal fade in" style="display:block;">
+	</c:if>
+	<c:if test="${mensajeR == null}">
 		<div class="modal fade" id="form2" tabindex="-5" role="dialog" aria-labelledby="etiqueta" aria-hidden="true">
+	</c:if>
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -100,6 +105,9 @@
 							<input type="submit" class="form-control btn btn-success" value="Registrarse" />
 						</div>
 					</form>
+					<c:if test="${mensajeR != null }">
+						<div class="alert alert-danger text-center" role="alert"> <c:out value="${mensajeR}"/> </div>
+					</c:if>
 				</div>
 			</div>		
 		</div>

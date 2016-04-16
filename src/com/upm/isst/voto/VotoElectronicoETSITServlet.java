@@ -16,7 +16,7 @@ public class VotoElectronicoETSITServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/html");
 		/*Pruebas de que funciona la BBDD*/
-		CensoDAO dao = CensoDAOImpl.getInstance();
+		/*CensoDAO dao = CensoDAOImpl.getInstance();
 		
 		List<CensoModel> votantes = dao.read();
 		
@@ -26,7 +26,7 @@ public class VotoElectronicoETSITServlet extends HttpServlet {
 			view.include(req, resp);
 		} catch (ServletException e) {
 			e.printStackTrace();
-		}
+		}*/
 		/*
 		dao.create((long) 22454076, "Rosa", "Acien", "Zuruta", 02462, "Albacete", "Albacete", "mayo", "Española", "Mujer", false );
 		dao.create((long) 75215071, "Daniel", "Albusac", "Tamargo", 03170, "Alicante", "Alicante", "abril", "Española", "Hombre", false );
