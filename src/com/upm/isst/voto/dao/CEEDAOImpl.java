@@ -69,9 +69,13 @@ public class CEEDAOImpl implements CEEDAO {
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select t from CEEModel t where t.dni = :dni"); 
 		q.setParameter("dni", dni);
-		CEEModel entradaCEE= (CEEModel) (q.getResultList());
+		if (q.getResultList().size()>0){ 
+		CEEModel entradaCEE= (CEEModel) (q.getResultList().get(0));
 		em.close();
 		return entradaCEE;
+		}else{
+			return null;
+		}
 	}
 
 	@Override
@@ -83,7 +87,7 @@ public class CEEDAOImpl implements CEEDAO {
 	@Override
 	public Boolean readContrasena(String contrasena, Long dni) {
 		CEEModel entradaCEE= readDNI(dni);
-		if (entradaCEE.getContrasena()==contrasena) return true;
+		if (entradaCEE.getContrasena().equals(contrasena)) return true;
 		return false;
 	}
 	

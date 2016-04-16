@@ -19,41 +19,43 @@ public class ControlLoginServlet extends HttpServlet{
 		String password = req.getParameter("contrasena");
 		resp.setContentType("text/plain");
 
+		CEEDAO dao = CEEDAOImpl.getInstance();
+		dao.create((long) 51110701, "ana", "martin", "legorburo", "madrid", "cuca");
 
-		if(user == null || password == null){
-			String mensaje = "Introduzca su usuario y contraseña";
+		if (dao.readDNI(Long.parseLong(user))==null){
+			String mensaje = "Usuario o contraseña incorrectos";
 			req.setAttribute("mensaje", mensaje);
 			try {
 				req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
 			} catch (ServletException e) {
 				e.printStackTrace();
 			}
+		}
 
+		else if (dao.readContrasena(password, Long.parseLong(user))){
+			//Ir a otra pagina
 
-		} else {
+			String provincia = dao.readProvincia(Long.parseLong(user));
+			//TODO:
 
-			CEEDAO dao = CEEDAOImpl.getInstance();
-			dao.create((long) 51110701, "ana", "martin", "legorburo", "madrid", "cuca");
-			
-			if (dao.readContrasena(password, Long.parseLong(user))){
-				//Ir a otra pagina
+			int numeroPoliticos = 5; 
+			//TODO:
+			//	Aquí acceder a la base de datos de políticos
+			//	int = dao.readNumeroPoliticos("provincia");
+			req.setAttribute("provincia", provincia);
+			req.setAttribute("numeroPoliticos", numeroPoliticos);
 
-				String provincia = dao.readProvincia(Long.parseLong(user));
-				//TODO:
-
-				int numeroPoliticos = 5; 
-				//TODO:
-				//	Aquí acceder a la base de datos de políticos
-				//	int = dao.readNumeroPoliticos("provincia");
-				req.setAttribute("provincia", provincia);
-				req.setAttribute("numeroPoliticos", numeroPoliticos);
-
-				try {
-					req.getRequestDispatcher("Votar.jsp").forward(req, resp);
-				} catch (ServletException e) {
-					e.printStackTrace();
-				}
+				resp.sendRedirect("Votar.jsp");
+		
+		}else{
+			String mensaje = "Usuario o contraseña incorrectos";
+			req.setAttribute("mensaje", mensaje);
+			try {
+				req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
+			} catch (ServletException e) {
+				e.printStackTrace();
 			}
 		}
-	}}
+	}
+}
 
