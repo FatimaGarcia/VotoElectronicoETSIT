@@ -92,3 +92,19 @@ h2{
 #enlace{
 	text-decoration: none;
 }
+/*CERTIFICADO*/
+#encabezado{
+	margin-top:60px;
+	margin-bottom:30px;
+	
+}
+.panel{
+	font-family:'Roboto', sans-serif;
+    font-size: 20px;
+    height:350px;
+
+}
+.panel-title{
+	font-family:'Roboto', sans-serif;
+    font-size: 25px;
+}

@@ -13,22 +13,33 @@
 </c:if>
 <c:if test="${autenticado == 1}">
 <%@ include file="navvoto.html" %> 
-<div class="voto">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" >
-	<h1>ELECCIONES A CORTES GENERALES 2016 - SENADO - <c:out value="${votante.provincia}"/></h1>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" id="encabezado" >
+	<h1>ELECCIONES A CORTES GENERALES 2016 - SENADO - <c:out value="${fn:toUpperCase(votante.provincia)}"/></h1>
 </div>
-
-<p><c:out value="${fn:toUpperCase(votante.nombre)}"/> <c:out value="${fn:toUpperCase(votante.apellido1)}"/> <c:out value="${fn:toUpperCase(votante.apellido2)}"/> 
-HA PARTICIPADO EN LAS ELECCIONES AL SENADO DE 2016 POR LA PROVINCIA DE <c:out value="${fn:toUpperCase(votante.provincia)}"/>,
-EL DÍA <%
-   Date dNow = new Date( );
-   SimpleDateFormat ft = new SimpleDateFormat ("dd ' DEL ' MM ' DE ' yyyy ' A LAS ' HH:mm:ss");
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" >
+<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"></div>
+<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title" style="font-family:Roboto; font-size:25px;">CERTIFICADO DE VOTACION</h2>
+   
+  </div>
+  <div class="panel-body">
+  	<br>
+	<c:out value="${fn:toUpperCase(votante.nombre)}"/> <c:out value="${fn:toUpperCase(votante.apellido1)}"/> <c:out value="${fn:toUpperCase(votante.apellido2)}"/><br><br> 
+	HA PARTICIPADO EN LAS ELECCIONES AL SENADO DE 2016 POR LA PROVINCIA DE <c:out value="${fn:toUpperCase(votante.provincia)}"/>, <br><br>
+	EL DÍA <%
+   	Date dNow = new Date( );
+   	SimpleDateFormat ft = new SimpleDateFormat ("dd ' DEL ' MM ' DE ' yyyy ' A LAS ' HH:mm:ss");
 	out.print(ft.format(dNow));
-%>
-</p>
-  
- </div>
- 
+	%>
+	<br><br>
+	Fdo: CEE<br><br>
+   </div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"></div>
+</div>
 </c:if>
 </body>
 </html>
