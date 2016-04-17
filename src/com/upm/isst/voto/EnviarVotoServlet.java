@@ -29,7 +29,10 @@ public class EnviarVotoServlet extends HttpServlet{
 
 			CEEDAO dao = CEEDAOImpl.getInstance();
 			CEEModel votante = dao.readDNI(Long.parseLong(usuario));
-			
+			//Marcar en la base de datos que el usuario ya  ha votado
+			votante.setVoto(true);
+			dao.update(votante);
+
 			
 			req.setAttribute("votante", votante);
 			req.setAttribute("autenticado", autenticado);

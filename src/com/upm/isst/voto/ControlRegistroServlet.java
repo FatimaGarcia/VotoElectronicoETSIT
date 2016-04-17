@@ -70,6 +70,7 @@ public class ControlRegistroServlet extends HttpServlet{
 				} else {
 					mensajeR = "Usted ya se ha registrado en el sistema";
 					persona.setVotoElectronico(true);
+					dao.update(persona);
 					req.setAttribute("mensajeR", mensajeR);
 					RequestDispatcher view = req.getRequestDispatcher("VotoElectronicoETSIT.jsp");
 					try {
