@@ -18,11 +18,11 @@
 	<h1>ELECCIONES A CORTES GENERALES 2016 - SENADO - <c:out value="${votante.provincia}"/></h1>
 </div>
 
-<p><c:out value="${votante.nombre}"/> <c:out value="${votante.apellido1}"/> <c:out value="${votante.apellido2}"/> 
-ha participado en las elecciones al senado de 2016 por la provincia de <c:out value="${votante.provincia}"/>,
-el día <%
+<p><c:out value="${fn:toUpperCase(votante.nombre)}"/> <c:out value="${fn:toUpperCase(votante.apellido1)}"/> <c:out value="${fn:toUpperCase(votante.apellido2)}"/> 
+HA PARTICIPADO EN LAS ELECCIONES AL SENADO DE 2016 POR LA PROVINCIA DE <c:out value="${fn:toUpperCase(votante.provincia)}"/>,
+EL DÍA <%
    Date dNow = new Date( );
-   SimpleDateFormat ft = new SimpleDateFormat ("dd ' de ' MM ' de ' yyyy ' a las ' HH:mm:ss");
+   SimpleDateFormat ft = new SimpleDateFormat ("dd ' DEL ' MM ' DE ' yyyy ' A LAS ' HH:mm:ss");
 	out.print(ft.format(dNow));
 %>
 </p>
