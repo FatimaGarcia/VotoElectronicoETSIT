@@ -1,4 +1,4 @@
-package com.upm.isst.voto;
+
 
 import java.io.IOException;   
 import java.io.PrintWriter;
@@ -28,12 +28,12 @@ public class ControlLoginServlet extends HttpServlet{
 		ProvinciasDAO prov = ProvinciasDAOImpl.getInstance();
 		
 		//Fecha de las elecciones: Año -1900. Mes-1. Día
-		Date fechaElecciones = new Date(116, 3, 18);
+		Date fechaElecciones = new Date(116, 3, 17);
 		Date hoy = new Date();
 		
 		if (!(hoy.getYear()==fechaElecciones.getYear() && hoy.getMonth()==fechaElecciones.getMonth() && hoy.getDate()==fechaElecciones.getDate())){
 		
-			String mensaje = "Hoy no es el dia de las elecciones";
+			String mensaje = "Hoy no es el día de las elecciones";
 			req.setAttribute("mensaje", mensaje);
 			req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
 			

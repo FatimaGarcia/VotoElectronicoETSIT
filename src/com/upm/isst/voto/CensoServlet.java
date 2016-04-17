@@ -72,7 +72,7 @@ public class CensoServlet extends HttpServlet {
 		dao1.create((long) 37, "Magdalena Oliva Dï¿½az", "madrid", "UPyD", 6);
 		dao1.create((long) 38, "Laura Duarte Domï¿½nguez", "madrid", "PACMA", 5);
 		dao1.create((long) 39, "Luis Vï¿½ctor Moreno Barbieri", "madrid", "PACMA", 5);
-		dao1.create((long) 40, "Francisco Garcï¿½a Leal", "madrid", "PACMA", 5);
+		dao1.create((long) 40, "Francisco García Leal", "madrid", "PACMA", 5);
 		dao1.create((long) 41, "Francisco Javier Ortega Smith-Molina", "madrid", "VOX", 8);
 		dao1.create((long) 42, "Ivan Espinosa de los Monteros de Simon", "madrid", "VOX", 8);
 		dao1.create((long) 43, "Carmen Lomana", "madrid", "VOX", 8);
