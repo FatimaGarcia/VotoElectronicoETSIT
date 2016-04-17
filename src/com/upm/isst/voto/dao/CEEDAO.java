@@ -16,6 +16,6 @@ public interface CEEDAO {
 	public Boolean readContrasena(String contrasena, Long dni);
 	public Boolean readVoto(Long dni);
 	public String readProvincia(Long dni);
-	public void update(CEEModel Voto);
-	public void delete(CEEModel Voto);
+	public void update(CEEModel votante);
+	public void delete(CEEModel votante);
 }

@@ -50,12 +50,13 @@ public class ControlRegistroServlet extends HttpServlet{
 	
 			if(nombre.toLowerCase().equals(nombreBBDD) && apellido1.toLowerCase().equals(apellido1BBDD) && 
 				apellido2.toLowerCase().equals(apellido2BBDD) && provincia.toLowerCase().equals(provinciaBBDD)){
+				//Comprobamos que la persona no está autenticada en el sistema
+				CEEDAO dao1 = CEEDAOImpl.getInstance();
 				
-				if(persona.isVotoElectronico() == false){
+				if(dao1.readDNI(id) == null){
 					persona.setVotoElectronico(true);
 					dao.update(persona);
 					
-					CEEDAO dao1 = CEEDAOImpl.getInstance();
 					dao1.create(id, nombreBBDD, apellido1BBDD, apellido2BBDD, provinciaBBDD, contrasenaR);
 					
 					mensajeSuccess = "Registro completado con exito";
@@ -68,6 +69,7 @@ public class ControlRegistroServlet extends HttpServlet{
 					}
 				} else {
 					mensajeR = "Usted ya se ha registrado en el sistema";
+					persona.setVotoElectronico(true);
 					req.setAttribute("mensajeR", mensajeR);
 					RequestDispatcher view = req.getRequestDispatcher("VotoElectronicoETSIT.jsp");
 					try {
@@ -87,18 +89,6 @@ public class ControlRegistroServlet extends HttpServlet{
 				}
 			}
 			
-			PrintWriter out = resp.getWriter();
-			out.println(nombre.toLowerCase());
-			out.println(apellido1.toLowerCase());
-			out.println(apellido2);
-			out.println(dni);
-			out.println(mail);
-			out.println(nombreBBDD);
-			out.println(apellido1BBDD);
-			out.println(apellido2BBDD);
-			out.println(provinciaBBDD);
-			out.println(persona);
-			out.close();
 
 		}
 	}

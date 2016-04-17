@@ -102,15 +102,21 @@ public class CEEDAOImpl implements CEEDAO {
 	}
 
 	@Override
-	public void update(CEEModel Voto) {
-		// TODO Auto-generated method stub
-
+	public void update(CEEModel votante) {
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		em.merge(votante);
+				
+		em.close();
 	}
 
 	@Override
-	public void delete(CEEModel Voto) {
-		// TODO Auto-generated method stub
-
+	public void delete(CEEModel votante) {
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		em.remove(votante);
+				
+		em.close();
 	}
 
 }
