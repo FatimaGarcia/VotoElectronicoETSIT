@@ -1,7 +1,8 @@
 package com.upm.isst.voto;
 
-import java.io.IOException;  
+import java.io.IOException;   
 import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.http.*;
 import javax.servlet.*;
@@ -23,13 +24,22 @@ public class ControlLoginServlet extends HttpServlet{
 		resp.setContentType("text/plain");
 
 		CEEDAO dao = CEEDAOImpl.getInstance();
-		dao.create((long) 44, "ana", "martin", "legorburo", "madrid", "cuca");
 
 		ProvinciasDAO prov = ProvinciasDAOImpl.getInstance();
-		/*prov.create("madrid", 3);
-		prov.create("albacete", 3);*/
 		
-		if (dao.readDNI(Long.parseLong(user))==null){
+		//Fecha de las elecciones: Año -1900. Mes-1. Día
+		Date fechaElecciones = new Date(116, 3, 17);
+		Date hoy = new Date();
+		
+		if (!(hoy.getYear()==fechaElecciones.getYear() && hoy.getMonth()==fechaElecciones.getMonth() && hoy.getDate()==fechaElecciones.getDate())){
+		
+			String mensaje = "Hoy no es el día de las elecciones";
+			req.setAttribute("mensaje", mensaje);
+			req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
+			
+		}
+		
+		else if (dao.readDNI(Long.parseLong(user))==null){
 			String mensaje = "Usuario y contrasena incorrectos";
 			req.setAttribute("mensaje", mensaje);
 			req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);

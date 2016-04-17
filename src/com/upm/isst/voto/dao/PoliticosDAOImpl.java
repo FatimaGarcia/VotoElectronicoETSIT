@@ -48,7 +48,7 @@ private static PoliticosDAOImpl instance;
 	public List<PoliticosModel> readNombre(String nombreCompleto) {
 		EntityManager em = EMFService.get().createEntityManager();
 		
-		Query q = em.createQuery("select t from PoliticosModel t where t.nombreCompleto = :nombreCompleto");
+		Query q = em.createQuery("select t from PoliticosModel t where t.nombreCompleto order by t.partido = :nombreCompleto");
 		q.setParameter("nombreCompleto", nombreCompleto);
 
 		List<PoliticosModel> politicos = q.getResultList();
