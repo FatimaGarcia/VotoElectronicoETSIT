@@ -28,11 +28,11 @@ public class ControlLoginServlet extends HttpServlet{
 		ProvinciasDAO prov = ProvinciasDAOImpl.getInstance();
 		
 		//Fecha de las elecciones: Año -1900. Mes-1. Día
-		Date fechaElecciones = new Date(116, 3, 18);
+		Date fechaInicio = new Date(116, 3, 17, 8, 0);
+		Date fechaFin = new Date(116, 3, 17, 20, 0);
 		Date hoy = new Date();
-		
-		if (!(hoy.getYear()==fechaElecciones.getYear() && hoy.getMonth()==fechaElecciones.getMonth() && hoy.getDate()==fechaElecciones.getDate())){
-		
+	
+		if(hoy.before(fechaInicio)||hoy.after(fechaFin)){
 			String mensaje = "Hoy no es el dia de las elecciones";
 			req.setAttribute("mensaje", mensaje);
 			req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
