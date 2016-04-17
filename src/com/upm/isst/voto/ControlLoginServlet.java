@@ -61,6 +61,7 @@ public class ControlLoginServlet extends HttpServlet{
 			req.setAttribute("provincia", provincia);
 			req.setAttribute("numeroPoliticos", numeroPoliticos);
 			req.setAttribute("autenticado", autenticado);
+			req.setAttribute("dni", user);
 			RequestDispatcher rd = req.getRequestDispatcher("/controlVoto");
 			rd.forward(req,resp);
 		

@@ -15,7 +15,7 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" >
 	<h1>ELECCIONES A CORTES GENERALES 2016 - SENADO - <c:out value="${provincia}"/></h1>
 </div>
-<form type="post" id="candidatos" action="/enviarVoto">
+<form method="post" id="candidatos" action="/enviarVoto">
  	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" id="subtitulo">
  		<h2>Elija un total de <c:out value="${numeroCandidatos}"/> candidatos</h2>
  	</div>
@@ -45,6 +45,8 @@
   									<c:out value="${candidato.nombreCompleto}"/></br></td>
   								</tr>
   							</c:forEach>
+  							<input name="aunt" type="hidden" value=<c:out value="${autenticado}"/>></input>
+  							<input name="dni" type="hidden" value=<c:out value="${dni}"/>></input>
 			  		</table>
 			  	</div>
 			</div>

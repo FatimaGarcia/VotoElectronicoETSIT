@@ -19,6 +19,7 @@ public class ControlVoto extends HttpServlet{
 		int autenticado = (int) req.getAttribute("autenticado");
 		String provincia = (String) req.getAttribute("provincia");
 		int numeroPoliticos = (int) req.getAttribute("numeroPoliticos");
+		String usuario =  (String) req.getAttribute("dni");
 		resp.setContentType("text/plain");
 
 		PoliticosDAO dao = PoliticosDAOImpl.getInstance();
@@ -31,6 +32,8 @@ public class ControlVoto extends HttpServlet{
 		req.setAttribute("numeroCandidatos", numeroPoliticos);
 		req.setAttribute("provincia", provincia.toUpperCase());
 		req.setAttribute("autenticado", autenticado);
+		req.setAttribute("dni", usuario);
+		
 		RequestDispatcher rd = req.getRequestDispatcher("/Votar.jsp");
 		rd.forward(req,resp);	
 	
