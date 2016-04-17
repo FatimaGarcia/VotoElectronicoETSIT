@@ -26,7 +26,7 @@ public class ControlLoginServlet extends HttpServlet{
 		CEEDAO dao = CEEDAOImpl.getInstance();
 
 		ProvinciasDAO prov = ProvinciasDAOImpl.getInstance();
-		
+		CEEModel votante = dao.readDNI(Long.parseLong(user));
 		//Fecha de las elecciones: Año -1900. Mes-1. Día
 		Date fechaInicio = new Date(116, 3, 17, 8, 0);
 		Date fechaFin = new Date(116, 3, 17, 20, 0);
@@ -44,7 +44,7 @@ public class ControlLoginServlet extends HttpServlet{
 			req.setAttribute("mensaje", mensaje);
 			req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
 		}
-		else if(dao.readVoto(Long.parseLong(user))){
+		else if(votante.getVoto() == true){
 			String mensaje = "Usted ya ha votado";
 			req.setAttribute("mensaje", mensaje);
 			
