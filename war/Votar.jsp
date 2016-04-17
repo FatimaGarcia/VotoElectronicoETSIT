@@ -54,7 +54,7 @@
 		</div>
 		<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-					<input id="btn1" type="submit" class="btn btn-success" value="Enviar mi voto" />
+					<input id="btn1" type="submit" class="btn btn-success" value="Enviar mi voto" onClick="return confirm('Confirme la emisión del voto');"/>
 					<input id="btn2" type="reset" class="btn btn-warning" value="Reestablecer" />
 				</div>
 		</div>
