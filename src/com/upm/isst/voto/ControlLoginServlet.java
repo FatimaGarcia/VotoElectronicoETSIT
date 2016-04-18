@@ -28,7 +28,7 @@ public class ControlLoginServlet extends HttpServlet{
 		ProvinciasDAO prov = ProvinciasDAOImpl.getInstance();
 		CEEModel votante = dao.readDNI(Long.parseLong(user));
 		//Fecha de las elecciones: Año -1900. Mes-1. Día
-		Date fechaInicio = new Date(116, 3, 18, 9, 0);
+		Date fechaInicio = new Date(116, 3, 18, 8, 0);
 		Date fechaFin = new Date(116, 3, 18, 20, 0);
 		Date hoy = new Date();
 	
