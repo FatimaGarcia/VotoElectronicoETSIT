@@ -14,5 +14,5 @@ public interface PoliticosDAO {
 	public List<PoliticosModel> readCodigo(Long codigo);
 
 	public void update(PoliticosModel politico);
-	public void delete(PoliticosModel politico);
+	public void delete(Long codigo);
 }

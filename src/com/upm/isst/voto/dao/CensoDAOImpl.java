@@ -2,6 +2,7 @@ package com.upm.isst.voto.dao;
 
 import java.util.List;
 
+import com.upm.isst.voto.model.CEEModel;
 import com.upm.isst.voto.model.CensoModel;
 
 import javax.persistence.*;
@@ -191,12 +192,14 @@ private static CensoDAOImpl instance;
 	}
 
 	@Override
-	public void delete(CensoModel votante) {
+	public void delete(Long dni) {
 		EntityManager em = EMFService.get().createEntityManager();
-		
-		em.remove(votante);
-				
-		em.close();
+		try{
+			CensoModel votante = em.find(CensoModel.class, dni);
+			em.remove(votante);
+		}finally{
+			em.close();
+		}
 	}
 
 }

@@ -21,5 +21,5 @@ public interface CensoDAO {
 	public List<CensoModel> readSexo(String sexo);
 	public List<CensoModel> readVotoElectronico(Boolean votoElectronico);
 	public void update(CensoModel votante);
-	public void delete(CensoModel votante);
+	public void delete(Long dni);
 }

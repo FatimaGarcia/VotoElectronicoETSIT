@@ -111,12 +111,14 @@ public class CEEDAOImpl implements CEEDAO {
 	}
 
 	@Override
-	public void delete(CEEModel votante) {
+	public void delete(Long dni) {
 		EntityManager em = EMFService.get().createEntityManager();
-		
-		em.remove(votante);
-				
-		em.close();
+		try{
+			CEEModel votante = em.find(CEEModel.class, dni);
+			em.remove(votante);
+		}finally{
+			em.close();
+		}
 	}
 
 }

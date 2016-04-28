@@ -17,5 +17,5 @@ public interface CEEDAO {
 	public Boolean readVoto(Long dni);
 	public String readProvincia(Long dni);
 	public void update(CEEModel votante);
-	public void delete(CEEModel votante);
+	public void delete(Long dni);
 }

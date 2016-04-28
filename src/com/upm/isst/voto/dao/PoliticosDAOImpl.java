@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import com.upm.isst.voto.model.CEEModel;
 import com.upm.isst.voto.model.CensoModel;
 import com.upm.isst.voto.model.PoliticosModel;
 
@@ -102,11 +103,14 @@ private static PoliticosDAOImpl instance;
 	}
 
 	@Override
-	public void delete(PoliticosModel politico) {
+	public void delete(Long codigo) {
 		EntityManager em = EMFService.get().createEntityManager();
-		
-		em.remove(politico);
-				
-		em.close();
+		try{
+			PoliticosModel politico = em.find(PoliticosModel.class, codigo);
+			em.remove(politico);
+		}finally{
+			em.close();
+		}
 	}
+
 }

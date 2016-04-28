@@ -44,7 +44,7 @@ private static ProvinciasDAOImpl instance;
 		ProvinciasModel provincia = readNombre(nombre);
 		return provincia.getNumeroCandidatos();
 		
-	};
+	}
 	public ProvinciasModel readNombre(String nombre){
 		EntityManager em = EMFService.get().createEntityManager();
 		Query q = em.createQuery("select t from ProvinciasModel t where t.nombre = :nombre"); 
@@ -56,8 +56,26 @@ private static ProvinciasDAOImpl instance;
 		}else{
 			return null;
 		}
-	};
-	
+	}
+	@Override
+	public void update(String nombre) {
+		EntityManager em = EMFService.get().createEntityManager();
+		
+		em.merge(nombre);
+				
+		em.close();
+	}
+
+	@Override
+	public void delete(String nombre) {
+		EntityManager em = EMFService.get().createEntityManager();
+		try{
+			ProvinciasModel provincia = em.find(ProvinciasModel.class, nombre);
+			em.remove(provincia);
+		}finally{
+			em.close();
+		}
+	}
 	
 	
 }
