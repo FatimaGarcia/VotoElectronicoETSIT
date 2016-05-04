@@ -12,8 +12,8 @@ $(document).ready(function() {
 						 message: 'Campo obligatorio'
 					 },
 					 regexp: {
-						 regexp: /^[0-9]+$/,
-						 message: 'El DNI solo puede contener numeros'
+						 regexp: /^\d{8}[a-zA-Z]{1}$/,
+						 message: '8 digitos + Letra'
 					 }
 				 }
 			 },
@@ -60,8 +60,8 @@ $(document).ready(function() {
 						 message: 'Campo obligatorio'
 					 },
 					 regexp: {
-						 regexp: /^[0-9]+$/,
-						 message: 'El DNI solo puede contener numeros'
+						 regexp: /^\d{8}[a-zA-Z]{1}$/,
+						 message: '8 digitos + Letra'
 					 }
 				 }
 			 },

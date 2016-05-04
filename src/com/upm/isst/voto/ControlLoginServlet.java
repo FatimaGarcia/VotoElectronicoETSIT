@@ -19,6 +19,7 @@ import com.upm.isst.voto.model.CEEModel;
 public class ControlLoginServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		String user = req.getParameter("usuario");
+		user = user.substring(0,8);
 		String password = req.getParameter("contrasena");
 		int autenticado = 0;
 		resp.setContentType("text/plain");
@@ -27,13 +28,16 @@ public class ControlLoginServlet extends HttpServlet{
 
 		ProvinciasDAO prov = ProvinciasDAOImpl.getInstance();
 		CEEModel votante = dao.readDNI(Long.parseLong(user));
-		//Fecha de las elecciones: Año -1900. Mes-1. Día
-		Date fechaInicio = new Date(116, 3, 18, 8, 0);
-		Date fechaFin = new Date(116, 3, 18, 20, 0);
+		
+		//Fecha de las elecciones: Año -1900. Mes-1. Dia
+		Date fechaInicio = new Date(116, 4, 17, 9, 0);
+		Date fechaFin = new Date(116, 4, 17, 20, 0);
 		Date hoy = new Date();
-	
+		int diaE = fechaInicio.getDate();
+		int mesE = fechaInicio.getMonth() + 1;
+		int anoE = fechaInicio.getYear() + 1900;
 		if(hoy.before(fechaInicio)||hoy.after(fechaFin)){
-			String mensaje = "Hoy no es el dia de las elecciones";
+			String mensaje = "El sistema de votacion se abrira de 8:00 a 20:00 el dia " + diaE + "/" + mesE + "/" + anoE;
 			req.setAttribute("mensaje", mensaje);
 			req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
 			

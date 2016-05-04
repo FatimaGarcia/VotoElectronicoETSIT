@@ -21,14 +21,14 @@
 				<div class="modal-content">
 					<div class="modal-header" id="headerLogin">
 						<a href="VotoElectronicoETSIT.jsp"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></a>
-						<h4 class="modal-title" id="etiqueta">Log-In</h4>
+						<h4 class="modal-title" id="etiqueta">Log-In - Elecciones Senado 2020</h4>
 					</div>
 					<form action="/controlLogin" method="post" acceptcharset="utf-8" id="loginForm">
 						<div class="modal-body" id="bodyLogin">
 							<div class="form-group">
 								<div class="input-group">
 									<label for="usuario" class="input-group-addon glyphicon glyphicon-user"></label>
-									<input class="form-control" type="number" name="usuario" required placeholder="DNI"/>
+									<input class="form-control" type="text" name="usuario" required placeholder="DNI"/>
 								</div>
 							</div>
 							<div class="form-group">
@@ -60,7 +60,7 @@
 				<div class="modal-content">
 					<div class="modal-header" id="headerRegister">
 						<a href="VotoElectronicoETSIT.jsp"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></a>
-						<h4 class="modal-title" id="etiqueta">Registro</h4>
+						<h4 class="modal-title" id="etiqueta">Registro - Elecciones Senado 2020</h4>
 					</div>
 					<form id="registrationForm" method="post" action="controlRegistro">
 						<div class="modal-body" id="bodyRegister">
@@ -88,7 +88,7 @@
 									<input type="text" class="form-control" name="dni">
 								</div>
 							</div>
-							<span class="help-block" style="font-size:13px; margin-bottom:5px; margin-left:10px;">DNI sin Letra</span>
+							<span class="help-block" style="font-size:13px; margin-bottom:5px; margin-left:10px;">DNI con Letra</span>
 							<div class="form-group">
 								<div class="input-group registro">
 									<label for="mail" class="input-group-addon" style="padding-right:90px;">E-Mail</label>

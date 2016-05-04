@@ -3,6 +3,7 @@ package com.upm.isst.voto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.*;
@@ -21,6 +22,7 @@ public class ControlRegistroServlet extends HttpServlet{
 		String apellido1 = req.getParameter("apellido1");
 		String apellido2 = req.getParameter("apellido2");
 		String dni = req.getParameter("dni");
+		dni = dni.substring(0,8);
 		Long id = Long.parseLong(dni);
 		String mail = req.getParameter("mail");
 		String provincia = req.getParameter("provincia");
@@ -29,48 +31,64 @@ public class ControlRegistroServlet extends HttpServlet{
 		String mensajeSuccess = null;
 		resp.setContentType("text/html");
 		
+		//Fecha de registro: AÃ±o -1900. Mes-1. Dia
+		Date fechaInicio = new Date(116, 3, 17, 0, 0);
+		Date fechaFin = new Date(116, 4, 16, 0, 0);
+		Date hoy = new Date();
+		
 		CensoDAO dao = CensoDAOImpl.getInstance();
 		List<CensoModel> votante = dao.readDNI(id);
-		if(votante.size() == 0){
-			mensajeR = "No existe ninguna persona asociada a ese DNI en el Censo Electoral";
-			req.setAttribute("mensajeR", mensajeR);
-			RequestDispatcher view = req.getRequestDispatcher("VotoElectronicoETSIT.jsp");
-			try {
-				view.forward(req, resp);
-			} catch (ServletException e) {
-				e.printStackTrace();
-			}
-		} else {
-			CensoModel persona = votante.get(0);
-			/*Datos asociados a ese DNI*/
-			String nombreBBDD = persona.getNombre();
-			String apellido1BBDD = persona.getApellido1();
-			String apellido2BBDD = persona.getApellido2();
-			String provinciaBBDD = persona.getProvincia();
-	
-			if(nombre.toLowerCase().equals(nombreBBDD) && apellido1.toLowerCase().equals(apellido1BBDD) && 
-				apellido2.toLowerCase().equals(apellido2BBDD) && provincia.toLowerCase().equals(provinciaBBDD)){
-				//Comprobamos que la persona no está autenticada en el sistema
-				CEEDAO dao1 = CEEDAOImpl.getInstance();
-				
-				if(dao1.readDNI(id) == null){
-					persona.setVotoElectronico(true);
-					dao.update(persona);
+		if(hoy.after(fechaInicio) && hoy.before(fechaFin)){
+			if(votante.size() == 0){
+				mensajeR = "No existe ninguna persona asociada a ese DNI en el Censo Electoral";
+				req.setAttribute("mensajeR", mensajeR);
+				RequestDispatcher view = req.getRequestDispatcher("VotoElectronicoETSIT.jsp");
+				try {
+					view.forward(req, resp);
+				} catch (ServletException e) {
+					e.printStackTrace();
+				}
+			} else {
+				CensoModel persona = votante.get(0);
+				/*Datos asociados a ese DNI*/
+				String nombreBBDD = persona.getNombre();
+				String apellido1BBDD = persona.getApellido1();
+				String apellido2BBDD = persona.getApellido2();
+				String provinciaBBDD = persona.getProvincia();
+		
+				if(nombre.toLowerCase().equals(nombreBBDD) && apellido1.toLowerCase().equals(apellido1BBDD) && 
+					apellido2.toLowerCase().equals(apellido2BBDD) && provincia.toLowerCase().equals(provinciaBBDD)){
+					//Comprobamos que la persona no está autenticada en el sistema
+					CEEDAO dao1 = CEEDAOImpl.getInstance();
 					
-					dao1.create(id, nombreBBDD, apellido1BBDD, apellido2BBDD, provinciaBBDD, contrasenaR);
-					
-					mensajeSuccess = "Registro completado con exito";
-					req.setAttribute("mensajeSuccess", mensajeSuccess);
-					RequestDispatcher view = req.getRequestDispatcher("VotoElectronicoETSIT.jsp");
-					try {
-						view.forward(req, resp);
-					} catch (ServletException e) {
-						e.printStackTrace();
+					if(dao1.readDNI(id) == null){
+						persona.setVotoElectronico(true);
+						dao.update(persona);
+						
+						dao1.create(id, nombreBBDD, apellido1BBDD, apellido2BBDD, provinciaBBDD, contrasenaR);
+						
+						mensajeSuccess = "Registro completado con exito";
+						req.setAttribute("mensajeSuccess", mensajeSuccess);
+						RequestDispatcher view = req.getRequestDispatcher("VotoElectronicoETSIT.jsp");
+						try {
+							view.forward(req, resp);
+						} catch (ServletException e) {
+							e.printStackTrace();
+						}
+					} else {
+						mensajeR = "Usted ya se ha registrado en el sistema";
+						persona.setVotoElectronico(true);
+						dao.update(persona);
+						req.setAttribute("mensajeR", mensajeR);
+						RequestDispatcher view = req.getRequestDispatcher("VotoElectronicoETSIT.jsp");
+						try {
+							view.forward(req, resp);
+						} catch (ServletException e) {
+							e.printStackTrace();
+						}
 					}
 				} else {
-					mensajeR = "Usted ya se ha registrado en el sistema";
-					persona.setVotoElectronico(true);
-					dao.update(persona);
+					mensajeR = "Los datos introducidos no se corresponden con los del Censo Electoral";
 					req.setAttribute("mensajeR", mensajeR);
 					RequestDispatcher view = req.getRequestDispatcher("VotoElectronicoETSIT.jsp");
 					try {
@@ -79,18 +97,35 @@ public class ControlRegistroServlet extends HttpServlet{
 						e.printStackTrace();
 					}
 				}
-			} else {
-				mensajeR = "Los datos introducidos no se corresponden con los del Censo Electoral";
-				req.setAttribute("mensajeR", mensajeR);
-				RequestDispatcher view = req.getRequestDispatcher("VotoElectronicoETSIT.jsp");
-				try {
-					view.forward(req, resp);
-				} catch (ServletException e) {
-					e.printStackTrace();
-				}
 			}
-			
-
+		} else {
+			int diaInicio = fechaInicio.getDate();
+			int mesInicio = fechaInicio.getMonth() + 1;
+			int anoInicio = fechaInicio.getYear() + 1900;
+			int diaFin = fechaFin.getDate();
+			int mesFin = fechaFin.getMonth() + 1;
+			int anoFin = fechaFin.getYear() + 1900;
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append("El registro podrá hacerse entre el ");
+			stringBuilder.append(diaInicio);
+			stringBuilder.append("/");
+			stringBuilder.append(mesInicio);
+			stringBuilder.append("/");
+			stringBuilder.append(anoInicio);
+			stringBuilder.append(" y ");
+			stringBuilder.append(diaFin);
+			stringBuilder.append("/");
+			stringBuilder.append(mesFin);
+			stringBuilder.append("/");
+			stringBuilder.append(anoFin);
+			mensajeR = stringBuilder.toString();
+			req.setAttribute("mensajeR", mensajeR);
+			RequestDispatcher view = req.getRequestDispatcher("VotoElectronicoETSIT.jsp");
+			try {
+				view.forward(req, resp);
+			} catch (ServletException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
