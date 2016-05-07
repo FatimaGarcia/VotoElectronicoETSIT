@@ -62,6 +62,7 @@
 						<a href="VotoElectronicoETSIT.jsp"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></a>
 						<h4 class="modal-title" id="etiqueta">Registro - Elecciones Senado 2020</h4>
 					</div>
+					<a href="/comprobarCert"><button type="button" class="btn btn-info text-center">Validar Certificado</button></a>
 					<form id="registrationForm" method="post" action="controlRegistro">
 						<div class="modal-body" id="bodyRegister">
 							<div class="form-group" style="margin-bottom:7px;">

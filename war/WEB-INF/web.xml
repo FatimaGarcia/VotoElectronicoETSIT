@@ -4,6 +4,23 @@ xmlns="http://java.sun.com/xml/ns/javaee"
 xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Registro</web-resource-name>
+			<url-pattern>/comprobarCert</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+            <role-name>*</role-name>
+        </auth-constraint>
+		<user-data-constraint>
+				<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	<!--<login-config>	
+		<auth-method>CLIENT-CERT</auth-method>
+	</login-config> -->
 	<servlet>
 		<servlet-name>VotoElectronicoETSIT</servlet-name>
 		<servlet-class>com.upm.isst.voto.VotoElectronicoETSITServlet</servlet-class>
@@ -49,6 +66,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>EnviarVoto</servlet-name>
 		<url-pattern>/enviarVoto</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>comprobarCert</servlet-name>
+		<servlet-class>com.upm.isst.voto.comprobarCert</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>comprobarCert</servlet-name>
+		<url-pattern>/comprobarCert</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>VotoElectronicoETSIT.jsp</welcome-file>
