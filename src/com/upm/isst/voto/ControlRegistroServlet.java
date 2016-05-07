@@ -21,9 +21,10 @@ public class ControlRegistroServlet extends HttpServlet{
 		String nombre = req.getParameter("nombre");
 		String apellido1 = req.getParameter("apellido1");
 		String apellido2 = req.getParameter("apellido2");
-		String dni = req.getParameter("dni");
-		dni = dni.substring(0,8);
+		String dniL = req.getParameter("dni");
+		String dni = dniL.substring(0,8);
 		Long id = Long.parseLong(dni);
+		char letra=dniL.charAt(8);
 		String mail = req.getParameter("mail");
 		String provincia = req.getParameter("provincia");
 		String contrasenaR = req.getParameter("contrasenaR");
@@ -31,11 +32,14 @@ public class ControlRegistroServlet extends HttpServlet{
 		String mensajeSuccess = null;
 		resp.setContentType("text/html");
 		
+		
 		//Fecha de registro: AÃ±o -1900. Mes-1. Dia
 		Date fechaInicio = new Date(116, 3, 17, 0, 0);
 		Date fechaFin = new Date(116, 4, 16, 0, 0);
 		Date hoy = new Date();
 		
+		char[] letrasDNI={'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'};
+		int resto =Integer.parseInt(dni)%23;
 		CensoDAO dao = CensoDAOImpl.getInstance();
 		List<CensoModel> votante = dao.readDNI(id);
 		if(hoy.after(fechaInicio) && hoy.before(fechaFin)){
@@ -48,7 +52,19 @@ public class ControlRegistroServlet extends HttpServlet{
 				} catch (ServletException e) {
 					e.printStackTrace();
 				}
-			} else {
+			} 
+			else if(letra!=letrasDNI[resto]){	
+				mensajeR = "Datos incorrectos";
+				req.setAttribute("mensajeR", mensajeR);
+				RequestDispatcher view = req.getRequestDispatcher("VotoElectronicoETSIT.jsp");
+				try {
+					view.forward(req, resp);
+				} catch (ServletException e) {
+					e.printStackTrace();
+				}
+		
+		
+		}else {
 				CensoModel persona = votante.get(0);
 				/*Datos asociados a ese DNI*/
 				String nombreBBDD = persona.getNombre();
@@ -58,7 +74,7 @@ public class ControlRegistroServlet extends HttpServlet{
 		
 				if(nombre.toLowerCase().equals(nombreBBDD) && apellido1.toLowerCase().equals(apellido1BBDD) && 
 					apellido2.toLowerCase().equals(apellido2BBDD) && provincia.toLowerCase().equals(provinciaBBDD)){
-					//Comprobamos que la persona no está autenticada en el sistema
+					//Comprobamos que la persona no estï¿½ autenticada en el sistema
 					CEEDAO dao1 = CEEDAOImpl.getInstance();
 					
 					if(dao1.readDNI(id) == null){
@@ -106,7 +122,7 @@ public class ControlRegistroServlet extends HttpServlet{
 			int mesFin = fechaFin.getMonth() + 1;
 			int anoFin = fechaFin.getYear() + 1900;
 			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.append("El registro podrá hacerse entre el ");
+			stringBuilder.append("El registro podrï¿½ hacerse entre el ");
 			stringBuilder.append(diaInicio);
 			stringBuilder.append("/");
 			stringBuilder.append(mesInicio);
