@@ -6,7 +6,7 @@ import com.upm.isst.voto.model.CEEModel;
 
 public interface CEEDAO {
 	public CEEModel create(Long dni, String nombre, String apellido1, String apellido2, 
-			 String provincia, String contrasena);
+			 String provincia, String contrasena, String cod);
 	public List<CEEModel> read();
 	public List<CEEModel> readNombre(String nombre);
 	public List<CEEModel> readApellido1(String apellido1);

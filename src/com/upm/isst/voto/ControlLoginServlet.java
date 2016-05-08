@@ -34,10 +34,10 @@ public class ControlLoginServlet extends HttpServlet{
 
 		ProvinciasDAO prov = ProvinciasDAOImpl.getInstance();
 		CEEModel votante = dao.readDNI(Long.parseLong(user));
-		
+	
 		//Fecha de las elecciones: Año -1900. Mes-1. Dia
-		Date fechaInicio = new Date(116, 4, 7, 9, 0);
-		Date fechaFin = new Date(116, 4, 7, 20, 0);
+		Date fechaInicio = new Date(116, 4, 8, 9, 0);
+		Date fechaFin = new Date(116, 4, 8, 20, 0);
 		Date hoy = new Date();
 		int diaE = fechaInicio.getDate();
 		int mesE = fechaInicio.getMonth() + 1;
@@ -50,7 +50,7 @@ public class ControlLoginServlet extends HttpServlet{
 		}
 		else if(letra!=letrasDNI[resto]){
 			
-			String mensaje = "Datos incorrectos";
+			String mensaje = "DNI introducido no es valido";
 			req.setAttribute("mensaje", mensaje);
 			req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
 			
@@ -62,14 +62,12 @@ public class ControlLoginServlet extends HttpServlet{
 			req.setAttribute("mensaje", mensaje);
 			req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
 		}
-		else if(votante.getVoto() == true){
+		else if(dao.readDNI(Long.parseLong(user)).getVoto() == true){
 			String mensaje = "Usted ya ha votado";
 			req.setAttribute("mensaje", mensaje);
-			
-				req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
+			req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
 	
 		}
-
 		else if (dao.readContrasena(password, Long.parseLong(user))){
 			//Ir a otra pagina
 			autenticado = 1;

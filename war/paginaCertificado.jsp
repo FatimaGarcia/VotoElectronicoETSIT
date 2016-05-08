@@ -26,15 +26,11 @@
   </div>
   <div class="panel-body">
   	<br>
-	<c:out value="${fn:toUpperCase(votante.nombre)}"/> <c:out value="${fn:toUpperCase(votante.apellido1)}"/> <c:out value="${fn:toUpperCase(votante.apellido2)}"/><br><br> 
-	HA PARTICIPADO EN LAS ELECCIONES AL SENADO DE 2016 POR LA PROVINCIA DE <c:out value="${fn:toUpperCase(votante.provincia)}"/>, <br><br>
-	EL DÍA <%
-   	Date dNow = new Date( );
-   	SimpleDateFormat ft = new SimpleDateFormat ("dd ' DEL ' MM ' DE ' yyyy ' A LAS ' HH:mm:ss");
-	out.print(ft.format(dNow));
-	%>
+	<c:out value="${texto}" />
+	<br><br><br><br>
+	Código del certificado: 
+	<c:out value="${hash}" />
 	<br><br>
-	Fdo: CEE<br><br>
    </div>
 </div>
 </div>

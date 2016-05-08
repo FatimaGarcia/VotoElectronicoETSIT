@@ -22,12 +22,12 @@ public class CEEDAOImpl implements CEEDAO {
 	
 	@Override
 	public CEEModel create(Long dni, String nombre, String apellido1, String apellido2,
-			 String provincia, String contrasena) {
+			 String provincia, String contrasena, String cod) {
 		
 		CEEModel entradaCEE = null;
 		
 		EntityManager em = EMFService.get().createEntityManager();
-		entradaCEE = new CEEModel(dni, nombre, apellido1, apellido2, provincia, contrasena);
+		entradaCEE = new CEEModel(dni, nombre, apellido1, apellido2, provincia, contrasena, cod);
 		em.persist(entradaCEE);
 		em.close();
 		

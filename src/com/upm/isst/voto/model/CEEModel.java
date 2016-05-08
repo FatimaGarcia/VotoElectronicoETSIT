@@ -24,9 +24,11 @@ public class CEEModel implements Serializable {
 	private String contrasena;
 	@Column
 	private boolean voto;
+	@Column
+	private String cod; 
 
 	public CEEModel(Long dni, String nombre, String apellido1, String apellido2, 
-			 String provincia, String contrasena) {
+			 String provincia, String contrasena, String cod) {
 		// TODO Auto-generated constructor stub
 		this.dni = dni;
 		this.nombre = nombre;
@@ -35,6 +37,7 @@ public class CEEModel implements Serializable {
 		this.provincia = provincia;
 		this.contrasena = contrasena;
 		this.voto = false;
+		this.cod = cod;
 	}
 
 	public Long getDni() {
@@ -90,6 +93,14 @@ public class CEEModel implements Serializable {
 
 	public void setVoto(Boolean voto) {
 		this.voto = voto;
+	}
+	
+	public String getCod() {
+		return cod;
+	}
+
+	public void setCod(String cod) {
+		this.cod = cod;
 	}
 	@Override
 	public String toString() {
