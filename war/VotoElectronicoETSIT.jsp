@@ -62,7 +62,11 @@
 						<a href="VotoElectronicoETSIT.jsp"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></a>
 						<h4 class="modal-title" id="etiqueta">Registro - Elecciones Senado 2020</h4>
 					</div>
-					<a href="/comprobarCert"><button type="button" class="btn btn-info text-center">Validar Certificado</button></a>
+					<form id="certificadoForm" enctype="multipart/form-data" method="post" action="comprobarCert">
+					<input type="file" name="certi">
+					<img src="Images/info.png" title="Para exportar su certificado, el cual debe haber sido previamente instalado en su navegador firefox, vaya a Preferencias -> avanzado -> certificados -> ver certificados. Seleccionelo y ver -> detalles ->exportar"/>
+					<button type="submit" class="btn btn-info text-center">Validar Certificado</button>
+					</form>
 					<form id="registrationForm" method="post" action="controlRegistro">
 						<div class="modal-body" id="bodyRegister">
 							<div class="form-group" style="margin-bottom:7px;">
