@@ -63,9 +63,14 @@
 						<h4 class="modal-title" id="etiqueta">Registro - Elecciones Senado 2020</h4>
 					</div>
 					<form id="certificadoForm" enctype="multipart/form-data" method="post" action="comprobarCert">
-					<input type="file" name="certi">
-					<img src="Images/info.png" title="Para exportar su certificado, el cual debe haber sido previamente instalado en su navegador firefox, vaya a Preferencias -> avanzado -> certificados -> ver certificados. Seleccionelo y ver -> detalles ->exportar"/>
-					<button type="submit" class="btn btn-info text-center">Validar Certificado</button>
+						<div class="form-group" style="margin-bottom:5px; margin-left:10px;">
+							<div class="input-group registro">
+								<label for="certi" class="input-group-addon" style="padding-right:60px;">Certificado</label>
+        						<span class="btn btn-default btn-file" style="padding:3px;"><input type="file" name="certi" style="max-width:300px;"></span>
+        				    	<img src="Images/info.png" title="Para exportar su certificado, el cual debe haber sido previamente instalado en su navegador firefox, vaya a Preferencias -> Avanzado -> Certificados -> Ver Certificados. Seleccionelo y ver -> Detalles -> Exportar"/>        					
+        						<input type="submit" class="btn btn-info text-center" id="btnValid" value="Validar"/>
+        					</div>	        				
+    					</div>
 					</form>
 					<form id="registrationForm" method="post" action="controlRegistro">
 						<div class="modal-body" id="bodyRegister">

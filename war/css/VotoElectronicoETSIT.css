@@ -151,4 +151,11 @@ h3{
 #dialogLogin{
 	margin-top:5px;
 }
-
+#certificadoForm{
+	margin-top:3px;
+	margin-bottom:3px;	
+}
+#btnValid{
+		font-family:'Roboto', sans-serif;
+    font-size: 15px;
+}

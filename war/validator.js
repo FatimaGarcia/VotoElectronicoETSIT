@@ -97,4 +97,26 @@ $(document).ready(function() {
 			 }
 		 }
 	});
+	$('#certificadoForm').bootstrapValidator({
+		 feedbackIcons: {
+			 valid: 'glyphicon glyphicon-ok',
+			 invalid: 'glyphicon glyphicon-remove',
+			 validating: 'glyphicon glyphicon-refresh'
+		 },
+		 fields: {
+			 certi: {
+				 validators: {
+					 notEmpty: {
+						 message: 'Campo obligatorio'
+					 },
+					 file:{
+						 	extension: 'crt',
+	                        type: 'application/x-x509-user-cert, application/x-x509-ca-cert ',
+	                        message: 'El archivo seleccionado no es valido. Extension permitida: .crt'
+					 }
+					 
+				 }
+			 }
+		 }
+	});
 });
