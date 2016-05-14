@@ -31,7 +31,8 @@ public class ControlLoginServlet extends HttpServlet{
 		req.getSession().setAttribute("aunt", autenticado);
 		resp.setContentType("text/plain");
 
-		char[] letrasDNI={'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'};
+		char[] letrasDNI={'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E','a','b','c','d'
+							,'f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 		int resto =Integer.parseInt(user)%23;
 		
 		CEEDAO dao = CEEDAOImpl.getInstance();
