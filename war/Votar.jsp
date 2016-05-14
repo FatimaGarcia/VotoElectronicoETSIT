@@ -6,18 +6,21 @@
 <html>
 <%@ include file="headvoto.html" %>	
 <body>
-<c:if test="${autenticado != 1}">
+<c:if test="${aunt!= 1}">
 <a id="enlace" href="VotoElectronicoETSIT.jsp"><div class="alert alert-warning text-center" id="alerta">Usted no se ha autenticado en el sistema</div></a>
 </c:if>
-<c:if test="${autenticado == 1}">
+<c:if test="${aunt == 1}">
 <%@ include file="navvoto.html" %> 
 <div class="voto">
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" >
-	<h1>ELECCIONES A CORTES GENERALES 2016 - SENADO - <c:out value="${provincia}"/></h1>
+	<h1>ELECCIONES A CORTES GENERALES 2016 - SENADO - <c:out value="${fn:toUpperCase(provincia)}"/></h1>
 </div>
+<c:if test="${msjErr != null}">
+${msjErr}
+</c:if>
 <form method="post" id="candidatos" action="/enviarVoto">
  	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" id="subtitulo">
- 		<h2>Elija un total de <c:out value="${numeroCandidatos}"/> candidatos</h2>
+ 		<h2>Elija hasta un total de <c:out value="${numeroCandidatos}"/> candidatos</h2>
  	</div>
  	<div class="row">
  		<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"></div>

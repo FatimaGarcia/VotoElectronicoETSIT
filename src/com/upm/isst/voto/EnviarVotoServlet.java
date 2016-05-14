@@ -29,15 +29,21 @@ import org.bouncycastle.util.encoders.Base64;
 import org.bouncycastle.util.encoders.Base64Encoder;
 import org.bouncycastle.util.encoders.Encoder;
 
+import com.upm.isst.voto.dao.CEEDAO;
+import com.upm.isst.voto.dao.CEEDAOImpl;
+import com.upm.isst.voto.model.CEEModel;
 import com.upm.isst.voto.model.VotoModel;
 
 import org.bouncycastle.util.Strings;
 public class EnviarVotoServlet extends HttpServlet{
 		public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 			String [] codigosPoliticos = req.getParameterValues("eleccion");
+			String usuario = (String) req.getSession().getAttribute("user");
+			CEEDAO dao = CEEDAOImpl.getInstance();
+			CEEModel votante = dao.readDNI(Long.parseLong(usuario));
+		if(!votante.getVoto()){
 			VotoModel voto = new VotoModel();
 			String envioVoto = voto.buildVoto(codigosPoliticos);
-			System.out.println(envioVoto);
 			byte [] votoCifrado = null;
 			try {
 				votoCifrado = cifrar(envioVoto);
@@ -54,7 +60,9 @@ public class EnviarVotoServlet extends HttpServlet{
 			resp.sendRedirect("http://1-dot-active-dahlia-127214.appspot.com/aceptarTFG?voto="+strVoto);
 			//Servlet del CRV que procesa los votos
 			//resp.sendRedirect("http://1-dot-evoto-2016.appspot.com/recibirVoto?voto="+strVoto);
-
+			} else {
+				req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
+			}
 		}
 
 		private byte [] cifrar(String envioVoto) throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException  {
@@ -94,6 +102,6 @@ public class EnviarVotoServlet extends HttpServlet{
 				KeyFactory fact = KeyFactory.getInstance("RSA", "BC");
 		        PublicKey caPubKey = fact.generatePublic(getPuSpec());
 				return caPubKey;
-			}
+		}
 }
 

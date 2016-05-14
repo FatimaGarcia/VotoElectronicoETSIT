@@ -8,10 +8,10 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ include file="headvoto.html" %>	
 <body>
-<c:if test="${autenticado != 1}">
+<c:if test="${aunt!= 1}">
 <a id="enlace" href="VotoElectronicoETSIT.jsp"><div class="alert alert-warning text-center" id="alerta">Usted no se ha autenticado en el sistema</div></a>
 </c:if>
-<c:if test="${autenticado == 1}">
+<c:if test="${aunt == 1}">
 <%@ include file="navvoto.html" %> 
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" id="encabezado" >
 	<h1>ELECCIONES A CORTES GENERALES 2016 - SENADO - <c:out value="${fn:toUpperCase(votante.provincia)}"/></h1>

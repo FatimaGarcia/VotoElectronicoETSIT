@@ -4,7 +4,7 @@ xmlns="http://java.sun.com/xml/ns/javaee"
 xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-	<security-constraint>
+<!-- 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Registro</web-resource-name>
 			<url-pattern>/comprobarCert</url-pattern>
@@ -17,7 +17,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<user-data-constraint>
 				<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
-	</security-constraint>
+	</security-constraint> -->
 	<!--<Connector acceptCount="100"
     clientAuth="true"
     keystoreFile="/C:/OpenSSL/bin/ssl/server/server.ks"
@@ -90,6 +90,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>comprobarCert</servlet-name>
 		<url-pattern>/comprobarCert</url-pattern>
+	</servlet-mapping>
+		<servlet>
+		<servlet-name>confirmacionVoto</servlet-name>
+		<servlet-class>com.upm.isst.voto.confirmacionVoto</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>confirmacionVoto</servlet-name>
+		<url-pattern>/confirmacionVoto</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>VotoElectronicoETSIT.jsp</welcome-file>

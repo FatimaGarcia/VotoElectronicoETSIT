@@ -16,10 +16,9 @@ import com.upm.isst.voto.model.PoliticosModel;
 @SuppressWarnings("serial")
 public class ControlVoto extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		int autenticado = (int) req.getAttribute("autenticado");
-		String provincia = (String) req.getAttribute("provincia");
-		int numeroPoliticos = (int) req.getAttribute("numeroPoliticos");
-		String usuario =  (String) req.getAttribute("dni");
+		String provincia = (String) req.getSession().getAttribute("provincia");
+		int numeroPoliticos = (int) req.getSession().getAttribute("numeroPoliticos");
+		int auntenticado = (int) req.getSession().getAttribute("aunt");
 		resp.setContentType("text/plain");
 
 		PoliticosDAO dao = PoliticosDAOImpl.getInstance();
@@ -31,9 +30,8 @@ public class ControlVoto extends HttpServlet{
 		req.setAttribute("candidatos", politicos);
 		req.setAttribute("numeroCandidatos", numeroPoliticos);
 		req.setAttribute("provincia", provincia.toUpperCase());
-		req.setAttribute("autenticado", autenticado);
-		req.setAttribute("dni", usuario);
-		
+		req.setAttribute("aunt", auntenticado);
+
 		RequestDispatcher rd = req.getRequestDispatcher("/Votar.jsp");
 		rd.forward(req,resp);	
 	

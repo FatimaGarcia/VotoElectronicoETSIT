@@ -46,7 +46,7 @@ public class VotoModel {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(idCEE);
 		stringBuilder.append("-");
-		stringBuilder.append(num.substring(0,10));
+		stringBuilder.append(num);
 		stringBuilder.append("-");
 		stringBuilder.append(codigos[0]);
 		stringBuilder.append("-");

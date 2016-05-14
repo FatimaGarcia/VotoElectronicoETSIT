@@ -18,13 +18,12 @@ import com.upm.isst.voto.model.CEEModel;
 @SuppressWarnings("serial")
 public class ControlLoginServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		
-		
 		String userL = req.getParameter("usuario");
 		String user = userL.substring(0,8);
 		char letra=userL.charAt(8);
 		String password = req.getParameter("contrasena");
 		int autenticado = 0;
+		req.getSession().setAttribute("aunt", autenticado);
 		resp.setContentType("text/plain");
 
 		char[] letrasDNI={'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'};
@@ -73,11 +72,10 @@ public class ControlLoginServlet extends HttpServlet{
 			autenticado = 1;
 			String provincia = dao.readProvincia(Long.parseLong(user));
 			int numeroPoliticos = prov.readNumeroCandidatos(provincia); 
-			
-			req.setAttribute("provincia", provincia);
-			req.setAttribute("numeroPoliticos", numeroPoliticos);
-			req.setAttribute("autenticado", autenticado);
-			req.setAttribute("dni", user);
+			req.getSession().setAttribute("user", user);
+			req.getSession().setAttribute("aunt", autenticado);
+			req.getSession().setAttribute("provincia", provincia);
+			req.getSession().setAttribute("numeroPoliticos", numeroPoliticos);
 			RequestDispatcher rd = req.getRequestDispatcher("/controlVoto");
 			rd.forward(req,resp);
 		
