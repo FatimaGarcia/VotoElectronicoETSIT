@@ -41,6 +41,7 @@ public class EnviarVotoServlet extends HttpServlet{
 			String usuario = (String) req.getSession().getAttribute("user");
 			CEEDAO dao = CEEDAOImpl.getInstance();
 			CEEModel votante = dao.readDNI(Long.parseLong(usuario));
+		//Comprobamos que no haya votado para evitar que el usuario de Atras en el navegador y pueda volver a votar
 		if(!votante.getVoto()){
 			VotoModel voto = new VotoModel();
 			String envioVoto = voto.buildVoto(codigosPoliticos);

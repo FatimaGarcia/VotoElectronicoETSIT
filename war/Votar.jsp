@@ -15,12 +15,19 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" >
 	<h1>ELECCIONES A CORTES GENERALES 2016 - SENADO - <c:out value="${fn:toUpperCase(provincia)}"/></h1>
 </div>
-<c:if test="${msjErr != null}">
-${msjErr}
-</c:if>
+
 <form method="post" id="candidatos" action="/enviarVoto">
+	<div class="row">
+	 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+			<c:if test="${msjErr != null}">
+				<div class="alert alert-danger text-center" role="alert"> ${msjErr}</div>
+			</c:if>
+		</div>
+	</div>
+	<div class="row">
  	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" id="subtitulo">
- 		<h2>Elija hasta un total de <c:out value="${numeroCandidatos}"/> candidatos</h2>
+ 		<h2>Elija hasta un total de <c:out value="${numeroPoliticos}"/> candidatos</h2>
+ 	</div>
  	</div>
  	<div class="row">
  		<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"></div>
@@ -48,8 +55,6 @@ ${msjErr}
   									<c:out value="${candidato.nombreCompleto}"/></br></td>
   								</tr>
   							</c:forEach>
-  							<input name="aunt" type="hidden" value=<c:out value="${autenticado}"/>></input>
-  							<input name="dni" type="hidden" value=<c:out value="${dni}"/>></input>
 			  		</table>
 			  	</div>
 			</div>

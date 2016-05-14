@@ -68,14 +68,6 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/controlRegistro</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>ControlVoto</servlet-name>
-		<servlet-class>com.upm.isst.voto.ControlVoto</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ControlVoto</servlet-name>
-		<url-pattern>/controlVoto</url-pattern>
-	</servlet-mapping>
-	<servlet>
 		<servlet-name>EnviarVoto</servlet-name>
 		<servlet-class>com.upm.isst.voto.EnviarVotoServlet</servlet-class>
 	</servlet>
@@ -88,7 +80,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-class>com.upm.isst.voto.comprobarCert</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>comprobarCert</servlet-name>
+	<servlet-name>comprobarCert</servlet-name>
 		<url-pattern>/comprobarCert</url-pattern>
 	</servlet-mapping>
 		<servlet>

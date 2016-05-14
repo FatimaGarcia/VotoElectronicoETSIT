@@ -1,6 +1,7 @@
 package com.upm.isst.voto;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
@@ -32,13 +33,13 @@ import com.upm.isst.voto.model.CEEModel;
 
 @SuppressWarnings("serial")
 public class confirmacionVoto extends HttpServlet{
+	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		if(req.getParameter("resultado") == null){
-			req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
-
+		if(req.getParameter("respuesta") == null){
+			req.getRequestDispatcher("/VotoElectronicoETSIT.jsp").forward(req, resp);
 		} else {
-		//Lectura y descifrado del mensaje de confirmacion
-			String conf = req.getParameter("resultado");
+			//Lectura y descifrado del mensaje de confirmacion
+			String conf = req.getParameter("respuesta");
 			String[] byteValues = conf.substring(1, conf.length() - 1).split(",");
 			byte[] bytes = new byte[byteValues.length];
 			for (int i=0, len=bytes.length; i<len; i++) {
@@ -55,13 +56,11 @@ public class confirmacionVoto extends HttpServlet{
 				e.printStackTrace();
 			}
 			String codDescr = new String(descifrado);
-			System.out.println(codDescr);
 			String [] codSep = codDescr.split("-");
 			String msjErr = null;
 			if(codSep[0].equals("grupo1ISST")){	
 				if(codSep[2].equals("0")){
 					String usuario = (String) req.getSession().getAttribute("user");
-					int autenticado = (int) req.getSession().getAttribute("aunt");
 					resp.setContentType("text/plain");
 	
 					CEEDAO dao = CEEDAOImpl.getInstance();
@@ -100,14 +99,19 @@ public class confirmacionVoto extends HttpServlet{
 					req.setAttribute("votante", votante);
 					req.setAttribute("texto", textCert);
 					req.setAttribute("hash", cod);
-					req.setAttribute("aunt", autenticado);
 					RequestDispatcher rd = req.getRequestDispatcher("/paginaCertificado.jsp");
 					rd.forward(req,resp);
 				} else {
 					msjErr = "Se ha producido un error al procesar su voto";
-					RequestDispatcher rd = req.getRequestDispatcher("/controlVoto");
+					req.setAttribute("msjErr", msjErr);
+					RequestDispatcher rd = req.getRequestDispatcher("/Votar.jsp");
 					rd.forward(req,resp);
 				} 
+			} else {
+				msjErr = "Se ha producido un error al procesar su voto";
+				req.setAttribute("msjErr", msjErr);
+				RequestDispatcher rd = req.getRequestDispatcher("/Votar.jsp");
+				rd.forward(req,resp);
 			}
 		}
 	}
@@ -122,7 +126,7 @@ public class confirmacionVoto extends HttpServlet{
 	      Cipher cifrador = Cipher.getInstance("RSA", "BC"); 
 	      
 
-	      // PASO 3b: Poner cifrador en modo DESCIFRADO 
+	      //Poner cifrador en modo DESCIFRADO 
 	      cifrador.init(Cipher.DECRYPT_MODE, clavePrivada); // Descrifra con la clave privada
       
 	      byte[] bufferPlano2 = cifrador.doFinal(votoCifrado);
