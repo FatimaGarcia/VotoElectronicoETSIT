@@ -90,7 +90,7 @@ public class EnviarVotoServlet extends HttpServlet{
 				return caPubKeySpec;
 			}
 			
-			private PublicKey getPuK() throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException{
+		private PublicKey getPuK() throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException{
 				KeyFactory fact = KeyFactory.getInstance("RSA", "BC");
 		        PublicKey caPubKey = fact.generatePublic(getPuSpec());
 				return caPubKey;

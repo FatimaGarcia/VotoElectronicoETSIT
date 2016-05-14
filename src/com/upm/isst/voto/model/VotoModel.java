@@ -31,9 +31,11 @@ public class VotoModel {
 		String num = numAleatorio.toString();
 		String idCEE = getIdCEE();
 		String [] codigos = new String[3];
-		for(int i = 0; i<codPoliticos.length; i++){
-			if(codPoliticos[i] != null){
-				codigos[i] = codPoliticos[i].substring(0,2);
+		if(codPoliticos != null){
+			for(int i = 0; i<codPoliticos.length; i++){
+				if(codPoliticos[i] != null){
+					codigos[i] = codPoliticos[i].substring(0,2);
+				}
 			}
 		}
 		for(int j=0; j<codigos.length; j++){
