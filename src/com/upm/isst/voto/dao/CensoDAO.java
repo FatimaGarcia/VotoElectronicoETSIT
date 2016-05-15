@@ -7,7 +7,7 @@ import com.upm.isst.voto.model.CensoModel;
 public interface CensoDAO {
 	public CensoModel create(Long dni, String nombre, String apellido1, String apellido2, long codigoPostal,
 			String ciudad, String provincia, String nacimiento, String nacionalidad, 
-			 String sexo, boolean votoElectronico);
+			 String sexo, boolean votoElectronico, boolean certificado);
 	public List<CensoModel> read();
 	public List<CensoModel> readNombre(String nombre);
 	public List<CensoModel> readApellido1(String apellido1);

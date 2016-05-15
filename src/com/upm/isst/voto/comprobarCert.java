@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 
 import javax.net.ssl.KeyManagerFactory;
@@ -20,6 +21,7 @@ import javax.servlet.*;
 import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.net.URL;
+import java.security.Certificate;
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.KeyStore;
@@ -28,6 +30,7 @@ import java.security.NoSuchProviderException;
 import java.security.PublicKey;
 import java.security.Signature;
 import java.security.SignatureException;
+import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
@@ -42,11 +45,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.OutputStream;
 
 import javax.servlet.RequestDispatcher;
-
-
-
-
-
+import javax.xml.bind.DatatypeConverter;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -59,7 +58,10 @@ import java.security.PrivateKey;
 import java.security.Security;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPrivateCrtKeySpec;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -70,283 +72,142 @@ import org.bouncycastle.cert.X509v3CertificateBuilder;
 import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
 import org.bouncycastle.cert.jcajce.JcaX509ExtensionUtils;
 import org.bouncycastle.cert.jcajce.JcaX509v3CertificateBuilder;
+import org.bouncycastle.openssl.PEMParser;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
+import org.bouncycastle.util.encoders.Base64;
+import org.bouncycastle.util.io.pem.PemReader;
 
-
+import com.google.appengine.api.blobstore.*;
+import com.upm.isst.voto.dao.CEEDAO;
+import com.upm.isst.voto.dao.CEEDAOImpl;
+import com.upm.isst.voto.dao.CensoDAO;
+import com.upm.isst.voto.dao.CensoDAOImpl;
+import com.upm.isst.voto.model.CEEModel;
+import com.upm.isst.voto.model.CensoModel;
 
 @SuppressWarnings("serial")
 public class comprobarCert extends HttpServlet {
+    private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 
- /* public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException,
-      IOException {*/
-	// public static void main(String[] args) throws UnsupportedEncodingException, IOException, CertificateException, InvalidKeyException, NoSuchAlgorithmException, NoSuchProviderException, SignatureException {
-
-		/*
-	public static PublicKey getPub()
-				    throws Exception {
-
-			 InputStream input = new URL("https://1-dot-evoto-2016.appspot.com/vercertca").openStream();
-				   
-				    DataInputStream dis = new DataInputStream(input);
-				    byte[] keyBytes = new byte[(int)input.available()];
-				    dis.readFully(keyBytes);
-				    dis.close();
-				    System.out.println("1");
-				    X509EncodedKeySpec spec =
-				      new X509EncodedKeySpec(keyBytes);
-				    System.out.println("2");
-				    KeyFactory kf = KeyFactory.getInstance("RSA", "BC");
-				    System.out.println("3");
-				    System.out.println(kf.generatePublic(spec)); 
-				    return kf.generatePublic(spec);
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+		Map<String, List<BlobKey>> blobs = BlobstoreServiceFactory.getBlobstoreService().getUploads(req);
+		List<BlobKey> blobKeys = blobs.get("certi");
+	if (blobKeys == null || blobKeys.isEmpty() || blobKeys.get(0) == null) {
+			resp.getWriter().println("err");
+	} else {
 		
+		BlobKey blobKey = new BlobKey(blobKeys.get(0).getKeyString());
+		BlobstoreInputStream is =new BlobstoreInputStream(blobKey);	
 		
-		
-				  }*/
-	private static RSAPublicKeySpec getPuSpec(){
-		RSAPublicKeySpec caPubKeySpec = new RSAPublicKeySpec(
-	            new BigInteger("de55a7d04decbfcb33ff62d7973f308661b6500bbf11f72d2076e4d18671412311e496f450b5e8eb6b17a30f0370ea414a5c73e79f8e8c9c3bacc779a33ee448a283b311c5831f26d20c157333938bc7e875b634b5a2aaa746caf7d367c4c1f59e0cc053ffced5d1df9418f1b03f89f1b07eb004cc05c0e95812f81fcbc7a6590ac7c38712ee1885447a64d23488b439f06f84eb52a5c43a8ed6ae986a1f6e9011bcb5c9c3d4bc3637a248abb96ec633719492b2d1a831fa15cbed5cfefd54f71d63b2416e37fe113253ae480046577ac43f8919c99896b18a31e0d774122cff7bbcea05e456e1d3ce9c8e01096e009bcc791fa44258c643a3f767907f6aa589", 16),
-	            new BigInteger("10001", 16));
-		return caPubKeySpec;
-	}	 
-	
-	
-		/* private static RSAPublicKeySpec getPuSpec(){
-				RSAPublicKeySpec caPubKeySpec = new RSAPublicKeySpec(
-			            new BigInteger("de55a7d04decbfcb33ff62d7973f308661b6500bbf11f72d2076e4d18671412311e496f450b5e8eb6b17a30f0370ea414a5c73e79f8e8c9c3bacc779a33ee448a283b311c5831f26d20c157333938bc7e875b634b5a2aaa746caf7d367c4c1f59e0cc053ffced5d1df9418f1b03f89f1b07eb004cc05c0e95812f81fcbc7a6590ac7c38712ee1885447a64d23488b439f06f84eb52a5c43a8ed6ae986a1f6e9011bcb5c9c3d4bc3637a248abb96ec633719492b2d1a831fa15cbed5cfefd54f71d63b2416e37fe113253ae480046577ac43f8919c99896b18a31e0d774122cff7bbcea05e456e1d3ce9c8e01096e009bcc791fa44258c643a3f767907f6aa589", 16),
-			            new BigInteger("10001", 16));
-				return caPubKeySpec;
-			}
-		 private static PublicKey getPuK() throws NoSuchAlgorithmException, NoSuchProviderException, InvalidKeySpecException{
-				KeyFactory fact = KeyFactory.getInstance("RSA", "BC");
-		        PublicKey caPubKey = fact.generatePublic(getPuSpec());
-				return caPubKey;
-			}*/
-		
-		 public static void main(String[] args) throws UnsupportedEncodingException, IOException, CertificateException, InvalidKeyException, NoSuchAlgorithmException, NoSuchProviderException, SignatureException, InvalidKeySpecException {
-		 
-		 
-		/*	 File file = new File("/Users/Ana/Documents/AnaMartinLegorburo(51110701D)");
-	         FileInputStream in=new FileInputStream(file);
-	        
-	         CertificateFactory cf = CertificateFactory.getInstance("X.509");
-		 
-	         try {
-	             X509Certificate cert=(X509Certificate)cf.generateCertificate(in);
-	             System.out.println("Hola"); 
-	             cert.verify(getPub());
+		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+		String line = null;
+		PrintWriter s = resp.getWriter();
+		StringBuilder a = new StringBuilder();
+		String cert = null;
+		while((line = reader.readLine()) != null) {
+			a.append(line);
+		}
+		reader.close();
+		cert = a.toString();
 
-	           }catch(Exception e){System.out.println("error");}
-	           finally {
-	             in.close();
-	           }
-	           
-		 */
-			 RSAPublicKeySpec spec = getPuSpec();
-			 KeyFactory factory = KeyFactory.getInstance("RSA");
-			 PublicKey pub = factory.generatePublic(spec);
-			 
-			 File signa=new File("/Users/Ana/Documents/pubKsig");
-			 FileInputStream sigfis = new FileInputStream(signa);
-			 byte[] sigToVerify = new byte[sigfis.available()]; 
-			 sigfis.read(sigToVerify);
-			 sigfis.close();
-			 Signature verifier = Signature.getInstance("SHA256withRSA");
-			 verifier.initVerify(pub);
-			 
-			 
-			 File certi=new File("/Users/Ana/Documents/AnaMartinLegorburo(51110701D)");
-			 FileInputStream datafis = new FileInputStream(certi);
-			 BufferedInputStream bufin = new BufferedInputStream(datafis);
-
-			 byte[] buffer = new byte[1024];
-			 int len;
-			 while (bufin.available() != 0) {
-			     len = bufin.read(buffer);
-			     verifier.update(buffer, 0, len);
-			 };
-
-			 bufin.close();
-			 boolean verifies = verifier.verify(sigToVerify);
-
-			 System.out.println("signature verifies: " + verifies);
-		 
-		 }
-	 }
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-	  
-		/* InputStream input = new URL("https://1-dot-evoto-2016.appspot.com/vercertca").openStream();
-		 
-		 try( BufferedReader br =
-		           new BufferedReader( new InputStreamReader(input,"UTF-8")))
-		   {
-		      StringBuilder sb = new StringBuilder();
-		      String line;
-		      while(( line = br.readLine()) != null ) {
-		         sb.append( line );
-		         sb.append( '\n' );}
-		      System.out.println(sb.toString());
-		      }catch(Exception e){System.out.println("catch 2");}
-		 
-		 System.out.println("Hasta");
-         CertificateFactory cf = CertificateFactory.getInstance("X.509");
-         System.out.println("Hasta");
-         X509Certificate ca = (X509Certificate) cf.generateCertificate(input);
-         input.close();
-         System.out.println("Hasta aqui");
-         File file = new File("AnaMartinLegorburo(51110701D)");
-         FileInputStream in=new FileInputStream(file);
-         try( BufferedReader br =
-		           new BufferedReader( new InputStreamReader(in,"UTF-8")))
-		   {
-		      StringBuilder sb = new StringBuilder();
-		      String line;
-		      while(( line = br.readLine()) != null ) {
-		         sb.append( line );
-		         sb.append( '\n' );}
-		      System.out.println(sb.toString());
-		      }catch(Exception e){System.out.println("catch 2");}
-		 
-         
-         
-         try {
-           X509Certificate cert=(X509Certificate)cf.generateCertificate(in);
-           cert.verify(ca.getPublicKey());
-
-         }
-         finally {
-           in.close();
-         }
-         
-            // cert.verify(ca.getPublicKey());
-         
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 */
-		 
-		 
-	   
-		 
-		 /* PublicKey ckey = null; // Clave pública del cliente
-			X509Certificate certificado = null; // Certificado para devolver
-			// Intentar decodificar la clave publica recibida en base 64
-			try {
-				InputStream input = new URL("https://1-dot-evoto-2016.appspot.com/vercertca").openStream();
-				byte[] byteKey = Base64.decode(IOUtils.toByteArray(input));
-				JcaSignedPublicKeyAndChallenge a = new JcaSignedPublicKeyAndChallenge(byteKey);
-				ckey = a.getPublicKey();
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("Error al decodificar la clave");
-			}
-		 
-		 */
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 //File file = new File("/Users/Ana/Documents/pubK");
-		
-		// File file = new File("https://1-dot-evoto-2016.appspot.com/vercertca");
-	  //FileInputStream fis = null;
-
-		/* byte[] encKey = new byte[input.available()];  
-		 input.read(encKey);
-		 input.close();
-		 
-		 X509EncodedKeySpec pubKeySpec = new X509EncodedKeySpec(encKey);
-		 KeyFactory keyFactory = KeyFactory.getInstance("DSA", "SUN");
-		 PublicKey pubKey =
-				    keyFactory.generatePublic(pubKeySpec);
-		 */
-		 
-	/*	try {
-			fis = new FileInputStream(file);
-		} catch (IOException e) {
-			System.out.println("catch 1");
+		String modCert = cert.substring(27, cert.length()-25);
+		byte [] decodeBase64 = Base64.decode(modCert);
+		CertificateFactory certFactory = null;
+		try {
+			certFactory = CertificateFactory.getInstance("X.509");
+		} catch (CertificateException e) {
 			e.printStackTrace();
-		}*/
-		/*	try( BufferedReader br =
-			           new BufferedReader( new InputStreamReader(input,"UTF-8")))
-			   {
-			      StringBuilder sb = new StringBuilder();
-			      String line;
-			      while(( line = br.readLine()) != null ) {
-			         sb.append( line );
-			         sb.append( '\n' );}
-			      System.out.println(sb.toString());
-			      }catch(Exception e){System.out.println("catch 2");}
-			      */
-			      
+		}
+		InputStream in = new ByteArrayInputStream(decodeBase64);
+		X509Certificate certificate = null;
+		try {
+			certificate = (X509Certificate)certFactory.generateCertificate(in);
+		} catch (CertificateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String data = certificate.toString();
+		//Extraer los datos a comprobar del certificado
+		//Comprobar los datos de la entidad expedidora del certificado
+		String orgExp = certificate.getIssuerDN().toString();
+		String [] orgExpData = orgExp.split(",");
+		String msj = null;
+		String msjSucc = null;
+		if(orgExpData[0].equals("CN=Grupo1")){
+			//Comprobamos los datos personales y los del censo
+			String [] subject = getSubject(data);
+			String user = subject[3];
+			user = user.substring(1, user.length()-2);
+			Long id = Long.parseLong(user);
+			CensoDAO dao = CensoDAOImpl.getInstance();
+			List<CensoModel> votante = dao.readDNI(id);
+			if(votante.size()>0){
+				CensoModel persona = votante.get(0);
+				/*Datos asociados a ese DNI*/
+				String nombreBBDD = persona.getNombre();
+				String apellido1BBDD = persona.getApellido1();
+				String apellido2BBDD = persona.getApellido2();
+				String provinciaBBDD = persona.getProvincia();
+				
+				String nombre = subject[0].toLowerCase();
+				String apellido1 = subject[1].toLowerCase();
+				String apellido2 = subject[2].toLowerCase();
+				String provincia = getProvincia(data);
+				//Obtenemos los datos de la persona del certificado
+				if(nombre.equals(nombreBBDD) && apellido1.equals(apellido1BBDD) && 
+						apellido2.equals(apellido2BBDD) && provincia.equals(provinciaBBDD)){
+					//Comprobamos que el cert no haya sido validado anteriormente
+					CEEDAO dao1 = CEEDAOImpl.getInstance();
+					if(dao1.readDNI(id) == null){
+						persona.setCert(true);
+						dao.update(persona);
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e1) {
+							e1.printStackTrace();
+						}
+						msj = "Certificado validado correctamente";
+
+					} else {
+						msj = "Su certificado ya ha sido validado anteriormente";
+					}
+				} else {
+					msj = "Los datos del certificado no estan asociados a ningun persona del Censo Electoral";
+
+				} 
+			} else {
+				msj = "No existen datos asociados a la persona en el Censo Electoral";
+			}
 			
-    /*res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
-    String cipherSuite = (String) req.getAttribute("javax.servlet.request.cipher_suite");
-    out.println("cipher " + cipherSuite);
-    X509Certificate[] certs = (X509Certificate[]) req.getAttribute("javax.servlet.request.X509Certificate");
-    out.println("certs " + certs);
-    if (certs != null) {
-      for (int i = 0; i < certs.length; i++) {
-        out.println("Client Certificate [" + i + "] = " + certs[i].toString());
-      }
-    } else {
-      if ("https".equals(req.getScheme())) {
-        out.println("This was an HTTPS request, " + "but no client certificate is available");
-      } else {
-        out.println("This was not an HTTPS request, " + "so no client certificate is available");
-      }
-    }
-  }
-}*/
-/*
-public void testRunning() throws Exception {
-HttpClient client = new HttpClient();
-setupClientSsl();
-// test get
-HttpMethod get = new GetMethod("https://127.0.0.1:8443/etomcat_x509");
-client.executeMethod(get);
-byte[] responseBody = get.getResponseBody();
-String content = new String(responseBody, "UTF-8");
-assertEquals("Servlet get fail", SecuredService.GREETING, content);
-// test assess denied
-HttpMethod post = new PostMethod("https://127.0.0.1:8443/etomcat_x509");
-client.executeMethod(post);
-assertEquals("Method security fail get fail", 403, post.getStatusCode());
+		} else {
+			msj = "El certificado no es valido. Expida un certificado valido aqui http://1-dot-evoto-2016.appspot.com/ca";
+		}
+	    resp.sendRedirect("/votoelectronicoetsit?msj="+msj);
+	}
+		
+	}
+	private String[] getSubject(String data){
+		int inicio = data.indexOf("EMAILADDRESS");
+		int fin = data.indexOf("Signature");
+		data = data.substring(inicio, fin);
+		String [] subject = data.split(",");
+		String nombre = subject[1];
+		inicio = nombre.indexOf("=");
+		nombre = nombre.substring(inicio+1);
+		String [] usuario = nombre.split(" ");
+		return usuario;
+	}
+	private String getProvincia(String data){
+		String provincia = "";
+		int inicio = data.indexOf("EMAILADDRESS");
+		int fin = data.indexOf("Signature");
+		data = data.substring(inicio, fin);
+		String [] subject = data.split(",");
+		provincia = subject[2];
+		provincia = provincia.substring(3);
+		return provincia.toLowerCase();
+	}
+	
+	
 }
-protected String dirname() {
-return "x509dir";
-}*/

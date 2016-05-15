@@ -23,12 +23,12 @@ private static CensoDAOImpl instance;
 	@Override
 	public CensoModel create(Long dni, String nombre, String apellido1, String apellido2,
 			  long codigoPostal, String ciudad, String provincia, String nacimiento,
-			String nacionalidad,  String sexo, boolean votoElectronico) {
+			String nacionalidad,  String sexo, boolean votoElectronico, boolean certificado) {
 		
 		EntityManager em = EMFService.get().createEntityManager();
 
 		CensoModel votante = new CensoModel(dni, nombre, apellido1, apellido2, codigoPostal, ciudad, provincia,
-											nacimiento, nacionalidad, sexo, votoElectronico);
+											nacimiento, nacionalidad, sexo, votoElectronico, certificado);
 		em.persist(votante);
 		em.close();
 		return votante;

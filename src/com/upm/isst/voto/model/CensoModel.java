@@ -33,9 +33,11 @@ public class CensoModel implements Serializable {
 	private String sexo;
 	@Column
 	private boolean votoElectronico;
+	@Column 
+	private boolean certificado;
 
 	public CensoModel(Long dni,String nombre, String apellido1, String apellido2, long codigoPostal, String ciudad, String provincia, String nacimiento, String nacionalidad, 
-					  String sexo, boolean votoElectronico) {
+					  String sexo, boolean votoElectronico, boolean certificado){
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
@@ -47,6 +49,7 @@ public class CensoModel implements Serializable {
 		this.nacionalidad = nacionalidad;
 		this.sexo = sexo;
 		this.votoElectronico = votoElectronico;
+		this.certificado = certificado;
 	}
 	public Long getDni() {
 		return dni;
@@ -134,7 +137,13 @@ public class CensoModel implements Serializable {
 	public void setVotoElectronico(boolean votoElectronico) {
 		this.votoElectronico = votoElectronico;
 	}
-	
+	public boolean certComprobado() {
+		return certificado;
+	}
+
+	public void setCert(boolean certificado) {
+		this.certificado = certificado;
+	}
 	@Override
 	public String toString() {
 		return "Persona [DNI=" + dni + ", Nombre=" + nombre

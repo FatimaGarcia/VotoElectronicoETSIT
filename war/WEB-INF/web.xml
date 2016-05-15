@@ -4,39 +4,6 @@ xmlns="http://java.sun.com/xml/ns/javaee"
 xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-<!-- 	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>Registro</web-resource-name>
-			<url-pattern>/comprobarCert</url-pattern>
-			<http-method>GET</http-method>
-			<http-method>POST</http-method>
-		</web-resource-collection>
-		<auth-constraint>
-            <role-name>*</role-name>
-        </auth-constraint>
-		<user-data-constraint>
-				<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-		</user-data-constraint>
-	</security-constraint> -->
-	<!--<Connector acceptCount="100"
-    clientAuth="true"
-    keystoreFile="/C:/OpenSSL/bin/ssl/server/server.ks"
-    keystorePass="password"    
-    truststoreFile="/C:/OpenSSL/bin/ssl/server/server.ks"
-    truststorePass="password"   
-    truststoreType="JKS"      
-    disableUploadTimeout="true"
-    enableLookups="true"
-    maxHttpHeaderSize="8192"
-    maxSpareThreads="75" maxThreads="150"
-    minSpareThreads="25" port="8443"
-    scheme="https"
-    secure="true"      
-    sslProtocol="TLS"/> -->
-	<!--<login-config>	
-		<auth-method>CLIENT-CERT</auth-method>
-		<realm-name>Not Required for CLIENT-CERT</realm-name>
-	</login-config>-->
 	<servlet>
 		<servlet-name>VotoElectronicoETSIT</servlet-name>
 		<servlet-class>com.upm.isst.voto.VotoElectronicoETSITServlet</servlet-class>

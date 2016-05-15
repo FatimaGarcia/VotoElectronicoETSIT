@@ -2,6 +2,11 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ page import="com.google.appengine.api.blobstore.BlobstoreServiceFactory" %>
+<%@ page import="com.google.appengine.api.blobstore.BlobstoreService" %>
+<%
+    BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@ include file="head.html" %>	
@@ -50,10 +55,10 @@
 			</div>
 		</div>
 	<!-- Formulario de registro -->
-	<c:if test="${mensajeR != null }">
+	<c:if test="${prueba != null}">
     	<div id="form2" class="modal fade in" style="display:block;">
 	</c:if>
-	<c:if test="${mensajeR == null}">
+	<c:if test="${prueba == null}">
 		<div class="modal fade" id="form2" tabindex="-5" role="dialog" aria-labelledby="etiqueta" aria-hidden="true">
 	</c:if>
 			<div class="modal-dialog" id="dialogRegister">
@@ -62,7 +67,7 @@
 						<a href="VotoElectronicoETSIT.jsp"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button></a>
 						<h4 class="modal-title" id="etiqueta">Registro - Elecciones Senado 2020</h4>
 					</div>
-					<form id="certificadoForm" enctype="multipart/form-data" method="post" action="comprobarCert">
+					<form id="certificadoForm" enctype="multipart/form-data" method="post" action="<%=blobstoreService.createUploadUrl("/comprobarCert")%>">
 						<div class="form-group" style="margin-bottom:5px; margin-left:10px;">
 							<div class="input-group registro">
 								<label for="certi" class="input-group-addon" style="padding-right:60px;">Certificado</label>
@@ -72,6 +77,9 @@
         					</div>	        				
     					</div>
 					</form>
+					<c:if test="${msj != null }">
+						<div id="alertcert1" class="alert alert-info text-center" role="alert"> <c:out value="${msj}"/> </div>
+					</c:if>
 					<form id="registrationForm" method="post" action="controlRegistro">
 						<div class="modal-body" id="bodyRegister">
 							<div class="form-group" style="margin-bottom:7px;">
@@ -129,6 +137,8 @@
 				</div>
 			</div>		
 	<script type="text/javascript" src="validator.js"> </script>
-
+<%@page import="java.util.*" session="true" %>
+<%HttpSession sesion=request.getSession();
+sesion.invalidate(); %>
 </body>
 </html>

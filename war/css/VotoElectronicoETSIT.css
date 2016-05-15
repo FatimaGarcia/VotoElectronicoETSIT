@@ -159,3 +159,9 @@ h3{
 		font-family:'Roboto', sans-serif;
     font-size: 15px;
 }
+#alertcert1{
+	font-family:'Roboto', sans-serif;
+    font-size: 12px;
+	padding:3px;
+	margin-bottom:0px;   
+}

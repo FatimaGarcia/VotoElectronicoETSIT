@@ -69,9 +69,8 @@
   </form>
   
  </div>
- 
  <script type="text/javascript">
- checkboxlimit(document.forms.candidatos.eleccion,${numeroCandidatos});
+checkboxlimit(document.forms.candidatos.eleccion,${numeroPoliticos});
  </script> 
 </c:if>
 </body>

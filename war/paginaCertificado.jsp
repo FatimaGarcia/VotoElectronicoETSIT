@@ -37,5 +37,9 @@
 <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"></div>
 </div>
 </c:if>
+<%@page import="java.util.*" session="true" %>
+<%HttpSession sesion=request.getSession();
+sesion.invalidate(); %>
+
 </body>
 </html>

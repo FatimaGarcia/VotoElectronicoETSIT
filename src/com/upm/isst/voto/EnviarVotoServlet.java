@@ -62,7 +62,7 @@ public class EnviarVotoServlet extends HttpServlet{
 			//Servlet del CRV que procesa los votos
 			//resp.sendRedirect("http://1-dot-evoto-2016.appspot.com/recibirVoto?voto="+strVoto);
 			} else {
-				req.getRequestDispatcher("VotoElectronicoETSIT.jsp").forward(req, resp);
+				req.getRequestDispatcher("/VotoElectronicoETSIT.jsp").forward(req, resp);
 			}
 		}
 

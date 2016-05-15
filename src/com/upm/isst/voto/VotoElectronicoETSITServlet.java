@@ -15,26 +15,19 @@ import com.upm.isst.voto.model.CensoModel;
 public class VotoElectronicoETSITServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/html");
-		/*Pruebas de que funciona la BBDD*/
-		/*CensoDAO dao = CensoDAOImpl.getInstance();
-		
-		List<CensoModel> votantes = dao.read();
-		
-		req.setAttribute("votantes", new ArrayList<CensoModel>(votantes));
-		RequestDispatcher view = req.getRequestDispatcher("Censo.jsp");
-		try {
-			view.include(req, resp);
-		} catch (ServletException e) {
-			e.printStackTrace();
-		}*/
-		/*
-		dao.create((long) 22454076, "Rosa", "Acien", "Zuruta", 02462, "Albacete", "Albacete", "mayo", "Española", "Mujer", false );
-		dao.create((long) 75215071, "Daniel", "Albusac", "Tamargo", 03170, "Alicante", "Alicante", "abril", "Española", "Hombre", false );
-		dao.create((long) 52801993, "Jose", "Alonso", "Becerra", 25489, "Lleida", "Lleida", "febrero", "Española", "Hombre", false );
-		
-		
-		for(CensoModel votantes: dao.read()) {
-			resp.getWriter().println(votantes);
-		}*/
+		 String msj = req.getParameter("msj");
+			
+		 req.setAttribute("msj", msj);
+		 String prueba = null;
+		 if(msj != null){
+				prueba="si";
+			}
+		req.setAttribute("prueba", prueba);
+		RequestDispatcher view = req.getRequestDispatcher("VotoElectronicoETSIT.jsp");
+			try {
+				view.forward(req, resp);
+			} catch (ServletException e) {
+				e.printStackTrace();
+			}
 	}
 }

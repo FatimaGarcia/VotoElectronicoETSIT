@@ -57,24 +57,38 @@ public class ControlRegistroServlet extends HttpServlet{
 				String apellido1BBDD = persona.getApellido1();
 				String apellido2BBDD = persona.getApellido2();
 				String provinciaBBDD = persona.getProvincia();
-		
+				boolean cert = persona.certComprobado();
+
 				if(nombre.toLowerCase().equals(nombreBBDD) && apellido1.toLowerCase().equals(apellido1BBDD) && 
 					apellido2.toLowerCase().equals(apellido2BBDD) && provincia.toLowerCase().equals(provinciaBBDD)){
 					//Comprobamos que la persona no est� autenticada en el sistema
 					CEEDAO dao1 = CEEDAOImpl.getInstance();
 					
 					if(dao1.readDNI(id) == null){
-						persona.setVotoElectronico(true);
-						dao.update(persona);
-						
-						dao1.create(id, nombreBBDD, apellido1BBDD, apellido2BBDD, provinciaBBDD, contrasenaR, null);
-						
-						mensajeSuccess = "Registro completado con exito";
-						req.setAttribute("mensajeSuccess", mensajeSuccess);
+						if(cert){
+							persona.setVotoElectronico(true);
+							dao.update(persona);
+							try {
+								Thread.sleep(500);
+							} catch (InterruptedException e1) {
+								e1.printStackTrace();
+							}
+							dao1.create(id, nombreBBDD, apellido1BBDD, apellido2BBDD, provinciaBBDD, contrasenaR, null);
+							
+							mensajeSuccess = "Registro completado con exito";
+							req.setAttribute("mensajeSuccess", mensajeSuccess);
+						} else {
+							mensajeR = "Valide su certificado antes de registrarse en el sistema.";
+						}
 					} else {
 						mensajeR = "Usted ya se ha registrado en el sistema";
 						persona.setVotoElectronico(true);
 						dao.update(persona);
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e1) {
+							e1.printStackTrace();
+						}
 					}
 				} else {
 					mensajeR = "Los datos introducidos no se corresponden con los del Censo Electoral";
@@ -104,6 +118,11 @@ public class ControlRegistroServlet extends HttpServlet{
 		}
 		
 		req.setAttribute("mensajeR", mensajeR);
+		String prueba = null;
+		if(mensajeR != null){
+			prueba="si";
+		}
+		req.setAttribute("prueba", prueba);
 		RequestDispatcher view = req.getRequestDispatcher("VotoElectronicoETSIT.jsp");
 		try {
 			view.forward(req, resp);

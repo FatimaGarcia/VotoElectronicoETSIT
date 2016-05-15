@@ -15,26 +15,27 @@ import com.upm.isst.voto.dao.ProvinciasDAOImpl;
 public class CensoServlet extends HttpServlet {
 
 	public void init(){
+		
 		/*Servlet que inicia las bases de datos del censo y politicos con los elementos de abajo*/
 		CensoDAO dao = CensoDAOImpl.getInstance();
-		dao.create((long) 22454076, "rosa", "acien", "zuruta", 02462, "albacete", "albacete", "02/02/1953", "espanola", "mujer", false );
-		dao.create((long) 75215071, "daniel", "albusac", "tamargo", 02354, "albacete", "albacete", "02/02/1953", "espanola", "hombre", false );
-		dao.create((long) 52801993, "jose", "alonso", "becerra", 02544, "albacete", "albacete", "02/02/1953", "espanola", "hombre", false );
-		dao.create((long) 34784976, "natalia", "benayas", "perez", 28701, "alcobendas", "madrid", "18/12/1949", "espanola", "mujer", false );
-		dao.create((long) 74340069, "francisco", "bernabe", "casanova", 28458, "madrid", "madrid", "02/02/1953", "espanola", "hombre", false );
-		dao.create((long) 76938954, "monica", "gongora", "rodriguez", 28700, "madrid", "madrid", "15/05/1978", "espanola", "mujer", false );
-		dao.create((long) 51465990, "beatriz", "garcia", "heras", 28965, "pozuelo de alarcon", "madrid", "25/06/1991", "espanola", "mujer", false );
-		dao.create((long) 50933568, "luis", "garrido", "ruiz", 02363, "albacete", "albacete", "06/12/1994", "espanola", "hombre", false );
-		dao.create((long) 43815329, "david", "gonzalez", "ruiz", 02114, "madrid", "madrid", "18/08/1983", "espanola", "hombre", false );
-		dao.create((long) 22479862, "jorge", "gonzalez", "navas", 02633, "las rozas", "madrid", "20/03/1957",  "espanola", "hombre", false );
-		dao.create((long) 15254626, "irene", "amate", "garrido", 28114, "majadahonda", "madrid", "28/02/1971", "espanola", "mujer", false );
-		dao.create((long) 22473780, "magdalena", "aparicio", "garcia", 28485, "parla", "madrid", "15/11/1938", "espanola", "mujer", false );
-		dao.create((long) 53749704, "fatima", "garcia", "corrochano", 28701, "alcobendas", "madrid", "09/05/1994", "espanola", "mujer", false);
-		dao.create((long) 53749703, "carlos", "garcia", "corrochano", 28701, "alcobendas", "madrid", "06/06/1996", "espanola", "hombre", false);
-		dao.create((long) 88756320, "maria", "lopez", "vaquero", 28444, "alcala de henares", "madrid", "08/08/1988", "espanola", "mujer", false);
-		dao.create((long) 22854763, "manuel", "martin", "martinez", 28222, "mostoles", "madrid", "10/05/1992", "espanola", "hombre", false);
-		dao.create((long) 38740234, "marta", "hoyuelos", "vergara", 28021, "madrid", "madrid", "24/01/1994", "espanola", "mujer", false);
-		dao.create((long) 51110701, "ana", "martin", "legorburo", 28036, "madrid", "madrid", "06/05/1994", "espanola", "mujer", false);
+		dao.create((long) 22454076, "rosa", "acien", "zuruta", 02462, "albacete", "albacete", "02/02/1953", "espanola", "mujer", false, false  );
+		dao.create((long) 75215071, "daniel", "albusac", "tamargo", 02354, "albacete", "albacete", "02/02/1953", "espanola", "hombre", false, false );
+		dao.create((long) 52801993, "jose", "alonso", "becerra", 02544, "albacete", "albacete", "02/02/1953", "espanola", "hombre", false, false );
+		dao.create((long) 34784976, "natalia", "benayas", "perez", 28701, "alcobendas", "madrid", "18/12/1949", "espanola", "mujer", false, false );
+		dao.create((long) 74340069, "francisco", "bernabe", "casanova", 28458, "madrid", "madrid", "02/02/1953", "espanola", "hombre", false, false );
+		dao.create((long) 76938954, "monica", "gongora", "rodriguez", 28700, "madrid", "madrid", "15/05/1978", "espanola", "mujer", false , false);
+		dao.create((long) 51465990, "beatriz", "garcia", "heras", 28965, "pozuelo de alarcon", "madrid", "25/06/1991", "espanola", "mujer", false, false );
+		dao.create((long) 50933568, "luis", "garrido", "ruiz", 02363, "albacete", "albacete", "06/12/1994", "espanola", "hombre", false , false);
+		dao.create((long) 43815329, "david", "gonzalez", "ruiz", 02114, "madrid", "madrid", "18/08/1983", "espanola", "hombre", false , false);
+		dao.create((long) 22479862, "jorge", "gonzalez", "navas", 02633, "las rozas", "madrid", "20/03/1957",  "espanola", "hombre", false, false );
+		dao.create((long) 15254626, "irene", "amate", "garrido", 28114, "majadahonda", "madrid", "28/02/1971", "espanola", "mujer", false, false );
+		dao.create((long) 22473780, "magdalena", "aparicio", "garcia", 28485, "parla", "madrid", "15/11/1938", "espanola", "mujer", false , false);
+		dao.create((long) 53749704, "fatima", "garcia", "corrochano", 28701, "alcobendas", "madrid", "09/05/1994", "espanola", "mujer", false, false);
+		dao.create((long) 53749703, "carlos", "garcia", "corrochano", 28701, "alcobendas", "madrid", "06/06/1996", "espanola", "hombre", false, false);
+		dao.create((long) 88756320, "maria", "lopez", "vaquero", 28444, "alcala de henares", "madrid", "08/08/1988", "espanola", "mujer", false, false);
+		dao.create((long) 22854763, "manuel", "martin", "martinez", 28222, "mostoles", "madrid", "10/05/1992", "espanola", "hombre", false, false);
+		dao.create((long) 38740234, "marta", "hoyuelos", "vergara", 28021, "madrid", "madrid", "24/01/1994", "espanola", "mujer", false, false);
+		dao.create((long) 51110701, "ana", "martin", "legorburo", 28036, "madrid", "madrid", "06/05/1994", "espanola", "mujer", false, false);
 		
 		
 		PoliticosDAO dao1 = PoliticosDAOImpl.getInstance();
