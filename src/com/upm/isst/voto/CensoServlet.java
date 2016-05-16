@@ -36,7 +36,7 @@ public class CensoServlet extends HttpServlet {
 		dao.create((long) 22854763, "manuel", "martin", "martinez", 28222, "mostoles", "madrid", "10/05/1992", "espanola", "hombre", false, false);
 		dao.create((long) 38740234, "marta", "hoyuelos", "vergara", 28021, "madrid", "madrid", "24/01/1994", "espanola", "mujer", false, false);
 		dao.create((long) 51110701, "ana", "martin", "legorburo", 28036, "madrid", "madrid", "06/05/1994", "espanola", "mujer", false, false);
-		dao.create((long) 54115194, "hussein", "wehbe", "lopez", 28015, "la laguna", "santa cruz de tenerife", "25/01/1994", "espanola", "hombre", false, false);
+		dao.create((long) 54115194, "hussein", "wehbe", "lopez", 28015, "madrid", "madrid", "25/01/1994", "espanola", "hombre", false, false);
 		
 		PoliticosDAO dao1 = PoliticosDAOImpl.getInstance();
 		
