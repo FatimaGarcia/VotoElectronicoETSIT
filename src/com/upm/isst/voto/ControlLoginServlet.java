@@ -40,8 +40,8 @@ public class ControlLoginServlet extends HttpServlet{
 		ProvinciasDAO prov = ProvinciasDAOImpl.getInstance();
 	
 		//Fecha de las elecciones: Año -1900. Mes-1. Dia
-		Date fechaInicio = new Date(116, 4, 12, 0, 0);
-		Date fechaFin = new Date(116, 4, 16, 0, 0);
+		Date fechaInicio = new Date(116, 4, 15, 0, 0);
+		Date fechaFin = new Date(116, 4, 18, 0, 0);
 		Date hoy = new Date();
 		int diaE = fechaInicio.getDate();
 		int mesE = fechaInicio.getMonth() + 1;

@@ -35,7 +35,7 @@ public class ControlRegistroServlet extends HttpServlet{
 		
 		//Fecha de registro: Año -1900. Mes-1. Dia
 		Date fechaInicio = new Date(116, 3, 17, 0, 0);
-		Date fechaFin = new Date(116, 4, 16, 0, 0);
+		Date fechaFin = new Date(116, 4, 19, 0, 0);
 		Date hoy = new Date();
 		
 		char[] letrasDNI={'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'};
